@@ -9,6 +9,8 @@
     --bg:#15131a; --panel:#1f1b26; --panel2:#262130;
     --gold:#c9a227; --ember:#e8a13c; --gem:#7f5cff; --gem2:#b49aff;
     --text:#e8e2d6; --muted:#a89f92; --line:#3a3347;
+    --rar-common:#cfc9bd; --rar-uncommon:#6ecf5e; --rar-rare:#4da3ff;
+    --rar-epic:#c07dff; --rar-legendary:#ffab3d;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
@@ -38,12 +40,40 @@
   .tier{color:var(--gold);font-weight:bold;text-align:center;width:52px}
   .lvl{color:var(--gem2);white-space:nowrap}
   .cols{column-count:2;column-gap:34px}
-  .gem{break-inside:avoid;margin:0 0 10px;padding:11px 13px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gem);border-radius:6px;list-style:none;display:flex;gap:10px;align-items:flex-start}
-  .box{flex:0 0 18px;height:18px;margin-top:2px;border:1.5px solid var(--gem2);border-radius:3px;background:rgba(127,92,255,.08)}
-  .gname{font-weight:bold;color:var(--text)}
+  .gem{break-inside:avoid;margin:0 0 10px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--rar-common);border-radius:6px;list-style:none;display:flex;gap:11px;align-items:flex-start}
+
+  /* Juwel-Icon statt Checkbox */
+  .gicon{flex:0 0 38px;width:38px;height:38px;margin-top:2px;display:flex;align-items:center;justify-content:center;border-radius:7px;border:1.5px solid currentColor;box-shadow:0 0 9px -2px currentColor, inset 0 0 6px -3px currentColor;overflow:hidden}
+  .gicon img{width:82%;height:82%;object-fit:contain;display:block}
+  .gicon svg{display:none;width:58%;height:58%;fill:currentColor}
+  .gicon.nopic img{display:none}
+  .gicon.nopic svg{display:block}
+
+  /* Raritätsfarben — wie auf den enshrouded.tools-Detailseiten */
+  .g-common    .gicon{color:var(--rar-common);background:rgba(207,201,189,.10)}
+  .g-uncommon  .gicon{color:var(--rar-uncommon);background:rgba(110,207,94,.10)}
+  .g-rare      .gicon{color:var(--rar-rare);background:rgba(77,163,255,.10)}
+  .g-epic      .gicon{color:var(--rar-epic);background:rgba(192,125,255,.10)}
+  .g-legendary .gicon{color:var(--rar-legendary);background:rgba(255,171,61,.10)}
+  .g-common{border-left-color:var(--rar-common)}
+  .g-uncommon{border-left-color:var(--rar-uncommon)}
+  .g-rare{border-left-color:var(--rar-rare)}
+  .g-epic{border-left-color:var(--rar-epic)}
+  .g-legendary{border-left-color:var(--rar-legendary)}
+
+  a.gname{font-weight:bold;text-decoration:none;border-bottom:1px dotted currentColor}
+  a.gname:hover{color:var(--ember)!important;border-bottom-color:var(--ember)}
+  .g-common a.gname{color:var(--rar-common)} .g-common a.gname{border-bottom-color:var(--rar-common)}
+  .g-uncommon a.gname{color:var(--rar-uncommon);border-bottom-color:var(--rar-uncommon)}
+  .g-rare a.gname{color:var(--rar-rare);border-bottom-color:var(--rar-rare)}
+  .g-epic a.gname{color:var(--rar-epic);border-bottom-color:var(--rar-epic)}
+  .g-legendary a.gname{color:var(--rar-legendary);border-bottom-color:var(--rar-legendary)}
   .gde{color:var(--muted);font-style:italic}
   .gsrc{display:block;font-size:.86em;color:var(--muted);margin-top:2px}
   .gem small{color:var(--gem2)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:4px 0 16px;padding:10px 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-size:14px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:11px;height:11px;transform:rotate(45deg);display:inline-block;border:1px solid rgba(0,0,0,.35)}
   .workflow{counter-reset:step}
   .workflow li{list-style:none;position:relative;padding:6px 0 6px 46px;margin-bottom:6px}
   .workflow li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:4px;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font-weight:bold;background:var(--panel)}
@@ -54,7 +84,7 @@
     .cols{column-count:1}
     h2{scroll-margin-top:12px}
     .gem{padding:12px 14px}
-    .box{flex:0 0 20px;height:20px}
+    .gicon{flex:0 0 42px;width:42px;height:42px}
     header{margin-bottom:20px;padding-bottom:14px}
   }
   @media (max-width:480px){
@@ -70,13 +100,18 @@
   @media print{
     body{background:#fdf9ef;color:#2a2418;padding:6mm}
     header,header::after{background:#fdf9ef}
-    .note,table,.gem{background:#fff;color:#2a2418}
+    .note,.legend,table,.gem{background:#fff;color:#2a2418}
     th{background:#f3ead2;color:#6b4a08;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     td,tr:last-child td{border-color:#d8cdb4}
-    .box{background:#fff;border-color:#7f5cff}
     .cols{column-count:2}
     .table-scroll{overflow:visible;border-radius:0}
     table{min-width:0}
+    .g-common a.gname{color:#5a564a}
+    .g-uncommon a.gname{color:#2e8b2e}
+    .g-rare a.gname{color:#1d5fb8}
+    .g-epic a.gname{color:#8a3fc7}
+    .g-legendary a.gname{color:#c07c08}
+    .swatch,.gem,.legend,.note,.gicon{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     a[href]::after{content:""}
   }
   @page{size:A4;margin:14mm}
@@ -87,106 +122,114 @@
 
 <header>
   <h1><span class="gem-icon"></span>Enshrouded</h1>
-  <div class="sub">Juwelen für Waffen &amp; Veredelungsschmieden — komplette Checkliste</div>
+  <div class="sub">Juwelen für Waffen &amp; Veredelungsschmieden — komplette Checkliste · Gem-Details: <a href="https://www.enshrouded.tools/gems" style="color:var(--gem2)">enshrouded.tools/gems</a></div>
 </header>
 
 <h2>1 · Grundregeln</h2>
 <div class="note"><ul class="rules">
 <li>Juwelen nur an einer <b>Veredelungsschmiede (Gem Forge)</b> einsetzen, aufwerten, entfernen oder recyceln.</li>
 <li>Waffe muss <b>voll aufgewertet</b> sein — dann wird der Juwel-Slot freigeschaltet (Quest „Finde und benutze eine Veredelungsschmiede").</li>
-<li><b>Einsetzen:</b> überall 50 × Archaik-Essenz (5), egal an welcher Schmiede.</li>
-<li><b>Aufwerten:</b> kostet Essenz der Charge, die zum Tier/Biom der Schmiede passt.</li>
-<li><b>Entfernen:</b> kostenlos seit Version 1.0 · <b>Recyceln:</b> gibt Teil der Essenz zurück.</li>
+<li><b>Einsetzen:</b> überall 50 × Archaische Essenz (5), egal an welcher Schmiede.</li>
+<li><b>Aufwerten:</b> kostet Archaische Essenz der Charge, die zum Tier/Biom der Schmiede passt.</li>
+<li><b>Entfernen:</b> kostenlos seit Version 1.0 · <b>Recyceln:</b> gibt Teil der Archaischen Essenz zurück.</li>
 <li>Pro Biom 3 Schmieden (meist im Nebel, stärkste im Nacht-Heiligtum) — Level-Bereiche wie 10–12 spiegeln die drei Schmieden wider.</li>
 </ul></div>
 
-<h2>2 · Schmieden &amp; Essenzen (Tier I–VI)</h2>
+<h2>2 · Schmieden &amp; Archaische Essenzen (Tier I–VI)</h2>
 <div class="table-scroll">
 <table>
 <tr><th>Tier</th><th>Biom</th><th>Essenz-Charge</th><th>Max. Juwel-Level</th></tr>
-<tr><td class="tier">I</td><td>Hochweiden <span class="gde">(Springlands)</span></td><td>Archaik-Essenz (5)</td><td class="lvl">10–12</td></tr>
-<tr><td class="tier">II</td><td>Düsterdickicht <span class="gde">(Revelwood)</span></td><td>Archaik-Essenz (13)</td><td class="lvl">15–18</td></tr>
-<tr><td class="tier">III</td><td>Nomaden-Anhöhen <span class="gde">(Nomad Highlands)</span></td><td>Archaik-Essenz (18)</td><td class="lvl">20–22</td></tr>
-<tr><td class="tier">IV</td><td>Ödland <span class="gde">(Kindlewastes)</span></td><td>Archaik-Essenz (25)</td><td class="lvl">30–32</td></tr>
-<tr><td class="tier">V</td><td>Albapracht-Gipfel <span class="gde">(Albaneve Summits)</span></td><td>Archaik-Essenz (33)</td><td class="lvl">35–40</td></tr>
-<tr><td class="tier">VI</td><td>Wogschimmer-Grund <span class="gde">(Veilwater Basin)</span></td><td>Archaik-Essenz (40)</td><td class="lvl">41–50 · Maximum</td></tr>
+<tr><td class="tier">I</td><td>Hochweiden <span class="gde">(Springlands)</span></td><td>Archaische Essenz (5)</td><td class="lvl">10–12</td></tr>
+<tr><td class="tier">II</td><td>Düsterdickicht <span class="gde">(Revelwood)</span></td><td>Archaische Essenz (13)</td><td class="lvl">15–18</td></tr>
+<tr><td class="tier">III</td><td>Nomaden-Anhöhen <span class="gde">(Nomad Highlands)</span></td><td>Archaische Essenz (18)</td><td class="lvl">20–22</td></tr>
+<tr><td class="tier">IV</td><td>Ödland <span class="gde">(Kindlewastes)</span></td><td>Archaische Essenz (25)</td><td class="lvl">30–32</td></tr>
+<tr><td class="tier">V</td><td>Albapracht-Gipfel <span class="gde">(Albaneve Summits)</span></td><td>Archaische Essenz (33)</td><td class="lvl">35–40</td></tr>
+<tr><td class="tier">VI</td><td>Wogschimmer-Grund <span class="gde">(Veilwater Basin)</span></td><td>Archaische Essenz (40)</td><td class="lvl">41–50 · Maximum</td></tr>
 </table>
 </div>
-<p style="margin-top:10px;color:var(--muted);font-size:14px">Essenz findest du in den golden leuchtenden <b>Bruthöhlen / Shroud-Lairs</b> des jeweiligen Bioms — sammeln oder mit der Spitzhacke abbauen. Eine Charge wirkt nur an der Schmiede ihres Bioms; auf Level 50 führt nur die Schmieden-Kette Tier I → VI.</p>
+<p style="margin-top:10px;color:var(--muted);font-size:14px">Archaische Essenz findest du in den golden leuchtenden <b>Bruthöhlen / Shroud-Lairs</b> des jeweiligen Bioms — sammeln oder mit der Spitzhacke abbauen. Eine Charge wirkt nur an der Schmiede ihres Bioms; auf Level 50 führt nur die Schmieden-Kette Tier I → VI.</p>
 
 <h2>3 · Juwelen-Farmplan (28 Juwelen)</h2>
+<p style="margin:0 0 10px;color:var(--muted);font-size:14px">Jeder Juwel-Name ist verlinkt → zur Detailseite auf <b>enshrouded.tools</b>. Die Farbe zeigt die Rarität wie im Spiel:</p>
+<div class="legend">
+<span><i class="swatch" style="background:var(--rar-common)"></i>Gewöhnlich (Common)</span>
+<span><i class="swatch" style="background:var(--rar-uncommon)"></i>Ungewöhnlich (Uncommon)</span>
+<span><i class="swatch" style="background:var(--rar-rare)"></i>Selten (Rare)</span>
+<span><i class="swatch" style="background:var(--rar-epic)"></i>Episch (Epic)</span>
+<span><i class="swatch" style="background:var(--rar-legendary)"></i>Legendär (Legendary)</span>
+</div>
 
 <h3>Tier I — Hochweiden</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Bleeding</span> <span class="gde">— Juwel des Blutes</span><span class="gsrc">Fell Banshee · Krit. Schnitttreffer verursachen Blutung</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Burning</span> <span class="gde">— Juwel des Brennens</span><span class="gsrc">Fell Banshee · Feuerschaden verursacht Brand</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Skulls</span> <span class="gde">— Juwel der Schädel</span><span class="gsrc">Hollow Reaper, Springlands-Hollow Halls · Viskeral-Kill beschwört Gefährten-Schädel</span></span></li>
+<li class="gem g-common"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-bleeding.webp" alt="Gem of Bleeding" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-bleeding" target="_blank" rel="noopener">Gem of Bleeding</a> <span class="gde">— Juwel des Blutes</span><span class="gsrc">Fell Banshee · Krit. Schnitttreffer verursachen Blutung</span></span></li>
+<li class="gem g-common"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-burning.webp" alt="Gem of Burning" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-burning" target="_blank" rel="noopener">Gem of Burning</a> <span class="gde">— Juwel des Brennens</span><span class="gsrc">Fell Banshee · Feuerschaden verursacht Brand</span></span></li>
+<li class="gem g-uncommon"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-skulls.webp" alt="Gem of Skulls" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-skulls" target="_blank" rel="noopener">Gem of Skulls</a> <span class="gde">— Juwel der Schädel</span><span class="gsrc">Hollow Reaper, Springlands-Hollow Halls · Viskeral-Kill beschwört Gefährten-Schädel</span></span></li>
 </ul>
 
 <h3>Tier II — Düsterdickicht</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Retaliation</span> <span class="gde">— der Vergeltung</span><span class="gsrc">Vukah Berserker · Blocken bufft nächsten Angriff</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Toxic Betrayal</span> <span class="gde">— der Giftverräterei</span><span class="gsrc">Scavenger Berserker · Backstab vergiftet</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Swiftness</span> <span class="gde">— der Schnelligkeit</span><span class="gsrc">Scavenger Berserker, Hollow Reaper · Sprint bufft Angriffe</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Fracturing</span> <span class="gde">— der Zersplitterung</span><span class="gsrc">Hollow Reaper, Düsterdickicht-Hollow Halls · Keulen-Kill erzeugt Knochensplitter</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Hopeful Embers</span> <span class="gde">— der Hoffnungsglut</span><span class="gsrc">Fell Banshee · Gegner droppen Nebel-Zeit-Orbs</span></span></li>
+<li class="gem g-common"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-retaliation.webp" alt="Gem of Retaliation" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-retaliation" target="_blank" rel="noopener">Gem of Retaliation</a> <span class="gde">— der Vergeltung</span><span class="gsrc">Vukah Berserker · Blocken bufft nächsten Angriff</span></span></li>
+<li class="gem g-uncommon"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-toxic-betrayal.webp" alt="Gem of Toxic Betrayal" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-toxic-betrayal" target="_blank" rel="noopener">Gem of Toxic Betrayal</a> <span class="gde">— der Giftverräterei</span><span class="gsrc">Scavenger Berserker · Backstab vergiftet</span></span></li>
+<li class="gem g-uncommon"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-swiftness.webp" alt="Gem of Swiftness" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-swiftness" target="_blank" rel="noopener">Gem of Swiftness</a> <span class="gde">— der Schnelligkeit</span><span class="gsrc">Scavenger Berserker/Butcher, Hollow Reaper · Sprint bufft Angriffe</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-fracturing.webp" alt="Gem of Fracturing" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-fracturing" target="_blank" rel="noopener">Gem of Fracturing</a> <span class="gde">— der Zersplitterung</span><span class="gsrc">Hollow Reaper, Düsterdickicht-Hollow Halls · Keulen-Kill erzeugt Knochensplitter</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-hopeful-embers.webp" alt="Gem of Hopeful Embers" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-hopeful-embers" target="_blank" rel="noopener">Gem of Hopeful Embers</a> <span class="gde">— der Hoffnungsglut</span><span class="gsrc">Fell Banshee · Gegner droppen Nebel-Zeit-Orbs</span></span></li>
 </ul>
 
 <h3>Tier III — Nomaden-Anhöhen</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Overpowering</span> <span class="gde">— der Übermacht</span><span class="gsrc">Hollow Reaper, Scavenger Berserker/Wolf, Shroud Stalker, Vukah Berserker</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Agility</span> <span class="gde">— der Agilität</span><span class="gsrc">Fell Banshee · Ausweichen bufft nächsten Treffer</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Corruption</span> <span class="gde">— der Verderbnis</span><span class="gsrc">Fell Banshee · stapelbare Marke explodiert (Nebel-Schaden)</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Lesser Necromancy</span> <span class="gde">— d. Geringeren Nekromantie</span><span class="gsrc">Hollow Reaper, Nomaden-Hollow Halls · Kill beschwört Hohl-Verbündeten</span></span></li>
+<li class="gem g-uncommon"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-overpowering.webp" alt="Gem of Overpowering" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-overpowering" target="_blank" rel="noopener">Gem of Overpowering</a> <span class="gde">— der Übermacht</span><span class="gsrc">Hollow Reaper, Scavenger Berserker/Wolf, Shroud Stalker, Vukah Berserker</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-agility.webp" alt="Gem of Agility" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-agility" target="_blank" rel="noopener">Gem of Agility</a> <span class="gde">— der Agilität</span><span class="gsrc">Fell Banshee u. a. · Ausweichen bufft nächsten Treffer</span></span></li>
+<li class="gem g-epic"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-corruption.webp" alt="Gem of Corruption" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-corruption" target="_blank" rel="noopener">Gem of Corruption</a> <span class="gde">— der Verderbnis</span><span class="gsrc">Fell Banshee · stapelbare Marke explodiert (Nebel-Schaden)</span></span></li>
+<li class="gem g-uncommon"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-lesser-necromancy.webp" alt="Gem of Lesser Necromancy" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-lesser-necromancy" target="_blank" rel="noopener">Gem of Lesser Necromancy</a> <span class="gde">— d. Geringeren Nekromantie</span><span class="gsrc">Hollow Reaper, Nomaden-Hollow Halls · Kill beschwört Hohl-Verbündeten</span></span></li>
 </ul>
 
 <h3>Tier IV — Ödland</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Battle Mania</span> <span class="gde">— der Kampfwut</span><span class="gsrc">Scavenger Berserker, Vukah Berserker</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Focused Light</span> <span class="gde">— des Fokussierten Lichts</span><span class="gsrc">Fell Commander, Scavenger Berserker · Zielmarkierung bufft Feuerschaden</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Soul Reaping</span> <span class="gde">— der Seelenernte</span><span class="gsrc">Hollow Reaper, Ödland-Hollow Halls · Seelenphialen heilen bei Zerstörung</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Cleansing</span> <span class="gde">— der Läuterung</span><span class="gsrc">Drak-/Fell-Gegner (z. B. Drak'Dal Chieftain), Shroud Stalker; auch durch Angeln</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Destiny</span> <span class="gde">— des Schicksals</span><span class="gsrc">Drak'Dal Chieftain, Shroud Stalker, Fell-Gegner + Festfund in der Welt</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Armoring</span> <span class="gde">— der Panzerung</span><span class="gsrc">Zufalls-Gegner Cinder's Cradle · Kill-Orb: kurze Schadensimmunität</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Hyperspecialization</span> <span class="gde">— der Hyperspezialisierung</span><span class="gsrc">Zufalls-Gegner Cinder's Cradle · Kills nach Spezialfähigkeit geben Fokus</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-battle-mania.webp" alt="Gem of Battle Mania" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-battle-mania" target="_blank" rel="noopener">Gem of Battle Mania</a> <span class="gde">— der Kampfwut</span><span class="gsrc">Scavenger Berserker, Vukah Berserker</span></span></li>
+<li class="gem g-legendary"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-focused-light.webp" alt="Gem of Focused Light" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-focused-light" target="_blank" rel="noopener">Gem of Focused Light</a> <span class="gde">— des Fokussierten Lichts</span><span class="gsrc">Fell Commander, Scavenger Berserker · Zielmarkierung bufft Feuerschaden</span></span></li>
+<li class="gem g-epic"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-soul-reaping.webp" alt="Gem of Soul Reaping" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-soul-reaping" target="_blank" rel="noopener">Gem of Soul Reaping</a> <span class="gde">— der Seelenernte</span><span class="gsrc">Hollow Reaper (only), Ödland-Hollow Halls · Seelenphialen heilen bei Zerstörung</span></span></li>
+<li class="gem g-epic"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-cleansing.webp" alt="Gem of Cleansing" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-cleansing" target="_blank" rel="noopener">Gem of Cleansing</a> <span class="gde">— der Läuterung</span><span class="gsrc">Drak-/Fell-Gegner (z. B. Drak'Dal Chieftain), Shroud Stalker; auch durch Angeln</span></span></li>
+<li class="gem g-epic"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-destiny.webp" alt="Gem of Destiny" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-destiny" target="_blank" rel="noopener">Gem of Destiny</a> <span class="gde">— des Schicksals</span><span class="gsrc">Drak'Dal Chieftain, Shroud Stalker, Fell-Gegner + Festfund in der Welt</span></span></li>
+<li class="gem g-legendary"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-armoring.webp" alt="Gem of Armoring" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-armoring" target="_blank" rel="noopener">Gem of Armoring</a> <span class="gde">— der Panzerung</span><span class="gsrc">Zufalls-Gegner Cinder's Cradle · Kill-Orb: kurze Schadensimmunität</span></span></li>
+<li class="gem g-legendary"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-hyperspecialization.webp" alt="Gem of Hyperspecialization" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-hyperspecialization" target="_blank" rel="noopener">Gem of Hyperspecialization</a> <span class="gde">— der Hyperspezialisierung</span><span class="gsrc">Zufalls-Gegner Cinder's Cradle · Kills nach Spezialfähigkeit geben Fokus</span></span></li>
 </ul>
 
 <h3>Tier V — Albapracht-Gipfel</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Bloodlust</span> <span class="gde">— des Blutdursts</span><span class="gsrc">Hollow Reaper, Vukah Berserker · Kills erzeugen Gesundheitsorbs (+Schaden)</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Meteoric Impact</span> <span class="gde">— des Meteoriteneinschlags</span><span class="gsrc">Hollow Reaper, Vukah Berserker · Explosion beim Landen nach dem Gleiten</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-bloodlust.webp" alt="Gem of Bloodlust" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-bloodlust" target="_blank" rel="noopener">Gem of Bloodlust</a> <span class="gde">— des Blutdursts</span><span class="gsrc">Hollow Reaper, Vukah Berserker · Kills erzeugen Gesundheitsorbs (+Schaden)</span></span></li>
+<li class="gem g-epic"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-meteoric-impact.webp" alt="Gem of Meteoric Impact" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-meteoric-impact" target="_blank" rel="noopener">Gem of Meteoric Impact</a> <span class="gde">— des Meteoriteneinschlags</span><span class="gsrc">Hollow Reaper, Vukah Berserker · Explosion beim Landen nach dem Gleiten</span></span></li>
 </ul>
 
 <h3>Tier VI — Wogschimmer-Grund</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Currents</span> <span class="gde">— der Strömungen</span><span class="gsrc">Drak Warriors · Nass/Zugeschmiert → Schockschaden-Ketten</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Lycanthropy</span> <span class="gde">— der Lykanthropie</span><span class="gsrc">Lacemaker Pond / Night Sanctum · Nacht-Kills erzeugen Lunar-Orbs (starker Buff)</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Aerobatics</span> <span class="gde">— der Flugkunst</span><span class="gsrc">Gegner an den Elixir Wells · Luftangriffe feuern Suchgeschosse</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Greater Necromancy</span> <span class="gde">— der Größeren Nekromantie</span><span class="gsrc">Hollowed, Wogschimmer-Hollow Halls · Kill beschwört einen Hollow Reaper</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-currents.webp" alt="Gem of Currents" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-currents" target="_blank" rel="noopener">Gem of Currents</a> <span class="gde">— der Strömungen</span><span class="gsrc">Drak Warriors · Nass/Zugeschmiert → Schockschaden-Ketten</span></span></li>
+<li class="gem g-legendary"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-lycanthropy.webp" alt="Gem of Lycanthropy" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-lycanthropy" target="_blank" rel="noopener">Gem of Lycanthropy</a> <span class="gde">— der Lykanthropie</span><span class="gsrc">Lacemaker Pond / Night Sanctum · Nacht-Kills erzeugen Lunar-Orbs (starker Buff)</span></span></li>
+<li class="gem g-epic"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-aerobatics.webp" alt="Gem of Aerobatics" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-aerobatics" target="_blank" rel="noopener">Gem of Aerobatics</a> <span class="gde">— der Flugkunst</span><span class="gsrc">Gegner an den Elixir Wells · Luftangriffe feuern Suchgeschosse</span></span></li>
+<li class="gem g-rare"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-greater-necromancy.webp" alt="Gem of Greater Necromancy" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-greater-necromancy" target="_blank" rel="noopener">Gem of Greater Necromancy</a> <span class="gde">— der Größeren Nekromantie</span><span class="gsrc">Hollowed, Wogschimmer-Hollow Halls · Kill beschwört einen Hollow Reaper</span></span></li>
 </ul>
 
 <h3>Juwelen mit zwei Biomen</h3>
 <ul class="cols">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Puncturing</span> <span class="gde">— der Durchdringung</span><span class="gsrc">Scavenger Berserker in Tier I (Hochweiden) <small>UND</small> Tier III (Nomaden-Anhöhen)</span></span></li>
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Cold Composure</span> <span class="gde">— der Kalten Gelassenheit</span><span class="gsrc">Fell Banshee in Tier III <small>UND</small> Fell Commander in Tier V</span></span></li>
+<li class="gem g-common"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-puncturing.webp" alt="Gem of Puncturing" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-puncturing" target="_blank" rel="noopener">Gem of Puncturing</a> <span class="gde">— der Durchdringung</span><span class="gsrc">Scavenger Berserker in Tier I (Hochweiden) <small>UND</small> Tier III (Nomaden-Anhöhen)</span></span></li>
+<li class="gem g-legendary"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-cold-composure.webp" alt="Gem of Cold Composure" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-cold-composure" target="_blank" rel="noopener">Gem of Cold Composure</a> <span class="gde">— der Kalten Gelassenheit</span><span class="gsrc">Fell Banshee in Tier III <small>UND</small> Fell Commander in Tier V</span></span></li>
 </ul>
 
 <h3>Offener Punkt</h3>
 <ul class="cols" style="column-count:1">
-<li class="gem"><span class="box"></span><span><span class="gname">Gem of Storm's Eye</span> <span class="gde">— des Sturmauges</span><span class="gsrc">Blitzketten auf markierte Gegner · Quellen lt. Community: Vukah Berserker, Fell Commander, Shroud Stalker (→ Ödland/Albapracht?) · Biom nicht endgültig bestätigt</span></span></li>
+<li class="gem g-uncommon"><span class="gicon"><img src="https://www.enshrouded.tools/img/items/gem-of-storms-eye.webp" alt="Gem of Storm's Eye" loading="lazy" onerror="this.parentNode.classList.add('nopic');this.remove()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 9 12 22 4 9Z"/></svg></span><span><a class="gname" href="https://www.enshrouded.tools/items/gem-of-storms-eye" target="_blank" rel="noopener">Gem of Storm's Eye</a> <span class="gde">— des Sturmauges</span><span class="gsrc">Blitzketten auf markierte Gegner · Quellen lt. Community: Vukah Berserker, Fell Commander, Shroud Stalker (→ Ödland/Albapracht?) · Biom nicht endgültig bestätigt</span></span></li>
 </ul>
 
 <h2>4 · Workflow pro Juwel</h2>
 <ol class="workflow">
 <li>Juwel im passenden Biom farmen (Abschnitt 3)</li>
-<li>Essenz-Charge des Ziel-Schmieden-Bioms sammeln (Bruthöhlen / Shroud-Lairs)</li>
+<li>Archaische Essenz der passenden Charge im Ziel-Schmieden-Biom sammeln (Bruthöhlen / Shroud-Lairs)</li>
 <li>Waffe voll aufwerten → Juwel-Slot wird frei</li>
-<li>Juwel einsetzen (50 × Essenz (5))</li>
+<li>Juwel einsetzen (50 × Archaische Essenz (5))</li>
 <li>Über die Schmieden-Kette hochleveln: Tier I → II → III → IV → V → VI (max. Level 50)</li>
-<li>Alte Juwelen recyceln, um Essenz zurückzuholen</li>
+<li>Alte Juwelen recyceln, um Archaische Essenz zurückzuholen</li>
 </ol>
 
-<footer>Quellen: enshrouded.wiki.gg (Gems · Gem Forge · Archaic Essence), wikily.gg, hacktheminotaur.com, wiki.eso-ui.com, Steam-Community-Guide — Stand 2026. Angaben zu neueren 1.0-Juwelen können sich mit Patches ändern.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert).</footer>
+<footer>Quellen: enshrouded.wiki.gg (Gems · Gem Forge · Archaic Essence), enshrouded.tools (Gem-Detailseiten inkl. Raritäten &amp; Icons), wikily.gg, hacktheminotaur.com, wiki.eso-ui.com, Steam-Community-Guide — Stand 2026.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert; Links öffnen im Browser, im PDF als Klickziele erhalten).</footer>
 
 </div>
 </body>
