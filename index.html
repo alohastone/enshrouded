@@ -41,15 +41,11 @@
   .lvl{color:var(--gem2);white-space:nowrap}
   .cols{column-count:2;column-gap:34px}
   .gem{break-inside:avoid;margin:0 0 10px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--rar-common);border-radius:6px;list-style:none;display:flex;gap:11px;align-items:flex-start}
-
-  /* Juwel-Icon statt Checkbox */
   .gicon{flex:0 0 38px;width:38px;height:38px;margin-top:2px;display:flex;align-items:center;justify-content:center;border-radius:7px;border:1.5px solid currentColor;box-shadow:0 0 9px -2px currentColor, inset 0 0 6px -3px currentColor;overflow:hidden}
   .gicon img{width:82%;height:82%;object-fit:contain;display:block}
   .gicon svg{display:none;width:58%;height:58%;fill:currentColor}
   .gicon.nopic img{display:none}
   .gicon.nopic svg{display:block}
-
-  /* Raritätsfarben — wie auf den enshrouded.tools-Detailseiten */
   .g-common    .gicon{color:var(--rar-common);background:rgba(207,201,189,.10)}
   .g-uncommon  .gicon{color:var(--rar-uncommon);background:rgba(110,207,94,.10)}
   .g-rare      .gicon{color:var(--rar-rare);background:rgba(77,163,255,.10)}
@@ -60,10 +56,9 @@
   .g-rare{border-left-color:var(--rar-rare)}
   .g-epic{border-left-color:var(--rar-epic)}
   .g-legendary{border-left-color:var(--rar-legendary)}
-
   a.gname{font-weight:bold;text-decoration:none;border-bottom:1px dotted currentColor}
   a.gname:hover{color:var(--ember)!important;border-bottom-color:var(--ember)}
-  .g-common a.gname{color:var(--rar-common)} .g-common a.gname{border-bottom-color:var(--rar-common)}
+  .g-common a.gname{color:var(--rar-common);border-bottom-color:var(--rar-common)}
   .g-uncommon a.gname{color:var(--rar-uncommon);border-bottom-color:var(--rar-uncommon)}
   .g-rare a.gname{color:var(--rar-rare);border-bottom-color:var(--rar-rare)}
   .g-epic a.gname{color:var(--rar-epic);border-bottom-color:var(--rar-epic)}
@@ -77,6 +72,16 @@
   .workflow{counter-reset:step}
   .workflow li{list-style:none;position:relative;padding:6px 0 6px 46px;margin-bottom:6px}
   .workflow li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:4px;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font-weight:bold;background:var(--panel)}
+
+  /* ── Karten-Bereich ─────────────────────────── */
+  .map-card{background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:14px;margin-top:6px}
+  .map-frame{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--panel2)}
+  .map-frame iframe{display:block;width:100%;height:min(78vh,620px);border:0}
+  .map-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:34px 18px;text-align:center}
+  .map-fallback .mappin{font-size:30px;color:var(--ember)}
+  .btn{display:inline-block;padding:10px 22px;border-radius:8px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none;font-weight:bold;letter-spacing:.5px;background:linear-gradient(180deg,rgba(201,162,39,.16),rgba(201,162,39,.05))}
+  .btn:hover{color:var(--ember);border-color:var(--ember)}
+  .map-note{color:var(--muted);font-size:13.5px;margin-top:10px}
   footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:12.5px;font-style:italic;text-align:center}
 
   /* ── Mobil & Tablet ─────────────────────────── */
@@ -86,6 +91,7 @@
     .gem{padding:12px 14px}
     .gicon{flex:0 0 42px;width:42px;height:42px}
     header{margin-bottom:20px;padding-bottom:14px}
+    .map-frame iframe{height:min(65vh,480px)}
   }
   @media (max-width:480px){
     body{font-size:15px}
@@ -94,13 +100,14 @@
     table{min-width:480px;font-size:14px}
     .gem-icon{width:12px;height:12px;margin-right:7px}
     .workflow li{padding-left:42px}
+    .map-frame iframe{height:min(60vh,420px)}
   }
 
   /* ── Druckfassung: hell fürs Papier ─────────── */
   @media print{
     body{background:#fdf9ef;color:#2a2418;padding:6mm}
     header,header::after{background:#fdf9ef}
-    .note,.legend,table,.gem{background:#fff;color:#2a2418}
+    .note,.legend,table,.gem,.map-card{background:#fff;color:#2a2418}
     th{background:#f3ead2;color:#6b4a08;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     td,tr:last-child td{border-color:#d8cdb4}
     .cols{column-count:2}
@@ -112,6 +119,9 @@
     .g-epic a.gname{color:#8a3fc7}
     .g-legendary a.gname{color:#c07c08}
     .swatch,.gem,.legend,.note,.gicon{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .map-frame iframe{display:none}
+    .map-fallback{display:flex!important;padding:16px}
+    .btn{color:#6b4a08;border-color:#6b4a08;background:#f3ead2}
     a[href]::after{content:""}
   }
   @page{size:A4;margin:14mm}
@@ -229,7 +239,16 @@
 <li>Alte Juwelen recyceln, um Archaische Essenz zurückzuholen</li>
 </ol>
 
-<footer>Quellen: enshrouded.wiki.gg (Gems · Gem Forge · Archaic Essence), enshrouded.tools (Gem-Detailseiten inkl. Raritäten &amp; Icons), wikily.gg, hacktheminotaur.com, wiki.eso-ui.com, Steam-Community-Guide — Stand 2026.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert; Links öffnen im Browser, im PDF als Klickziele erhalten).</footer>
+<h2>5 · Interaktive Karte: Veredelungsschmieden &amp; Nacht-Heiligtümer</h2>
+<div class="map-card">
+<div class="map-frame">
+<iframe src="https://pindrop.gg/enshrouded/map?cat=Gem_Forge%2CNight_Sanctum&amp;v=3577.02,6177.28,-3.5" title="Enshrouded Karte: Gem Forges &amp; Night Sanctums (PinDrop)" loading="lazy" allowfullscreen></iframe>
+</div>
+<p class="map-note">📍 Veredelungsschmieden (Gem Forges) und Nacht-Heiligtümer (Night Sanctums) — Ansicht wie von dir gewählt auf pindrop.gg. Funktioniert der Kartenausschnitt hier nicht (z. B. weil externe Einbettung blockiert wird), öffne die Karte direkt: 
+<a class="btn" href="https://pindrop.gg/enshrouded/map?cat=Gem_Forge%2CNight_Sanctum&amp;v=3577.02,6177.28,-3.5" target="_blank" rel="noopener">Karte auf pindrop.gg öffnen ↗</a></p>
+</div>
+
+<footer>Quellen: enshrouded.wiki.gg (Gems · Gem Forge · Archaic Essence), enshrouded.tools (Gem-Detailseiten inkl. Raritäten &amp; Icons), pindrop.gg (Karte), wikily.gg, hacktheminotaur.com, wiki.eso-ui.com, Steam-Community-Guide — Stand 2026.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert; die interaktive Karte erscheint im PDF als Klicklink).</footer>
 
 </div>
 </body>
