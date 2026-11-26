@@ -3,7 +3,7 @@
    Wird von index.html, juwelen.html und angeln.html geladen.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 :root{
   --bg:#15131a; --panel:#1f1b26; --panel2:#262130;
