@@ -4,101 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Enshrouded – Angeln (Wake of the Water)</title>
-<style>
-  :root{
-    --bg:#15131a; --panel:#1f1b26; --panel2:#262130;
-    --gold:#c9a227; --ember:#e8a13c; --gem:#7f5cff; --gem2:#b49aff;
-    --text:#e8e2d6; --muted:#a89f92; --line:#3a3347;
-    --rar-common:#cfc9bd; --rar-uncommon:#6ecf5e; --rar-rare:#4da3ff; --rar-epic:#c07dff;
-    --meta:#ffd24d;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-  body{
-    font-family:"Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
-    background:var(--bg); color:var(--text);
-    padding:clamp(14px,4vw,28px) clamp(10px,4vw,22px);
-    line-height:1.55; font-size:16px;
-  }
-  .wrap{max-width:900px;margin:0 auto}
-  header{text-align:center;border-bottom:2px solid var(--gold);padding-bottom:18px;margin-bottom:26px;position:relative}
-  header::after{content:"❦";color:var(--gold);font-size:20px;position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 10px}
-  h1{font-variant:small-caps;letter-spacing:3px;font-size:clamp(24px,7vw,30px);color:var(--ember)}
-  .sub{color:var(--muted);font-style:italic;margin-top:6px;font-size:.95em}
-  .gem-icon{display:inline-block;width:14px;height:14px;background:linear-gradient(135deg,var(--gem2),var(--gem));transform:rotate(45deg);margin-right:9px;border:1px solid var(--gold);vertical-align:middle}
-  h2{font-variant:small-caps;letter-spacing:2px;color:var(--ember);font-size:clamp(17px,5vw,20px);margin:30px 0 12px;border-left:4px solid var(--gold);padding-left:10px}
-  h3{color:var(--gem2);font-size:16px;margin:18px 0 8px;letter-spacing:1px}
-  .note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:8px}
-  ul.rules{list-style:none}
-  ul.rules li{padding:3px 0 3px 24px;position:relative}
-  ul.rules li::before{content:"✦";position:absolute;left:4px;color:var(--gold)}
-  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--gold);border-radius:8px}
-  table{width:100%;min-width:560px;border-collapse:collapse;background:var(--panel);font-size:15px}
-  th{background:linear-gradient(180deg,#2c2437,#221c2b);font-variant:small-caps;letter-spacing:1px;color:var(--ember);padding:9px 10px;text-align:left;border-bottom:2px solid var(--gold)}
-  td{padding:8px 10px;border-bottom:1px solid var(--line)}
-  tr:last-child td{border-bottom:none}
-  .tier{color:var(--gold);font-weight:bold;text-align:center;width:52px}
-  .good{color:var(--meta);font-weight:bold}
-  .bad{color:#e07a6a}
-  .stars{color:var(--meta);white-space:nowrap;font-size:14px}
-  .gde{color:var(--muted);font-style:italic}
-  .diamond{display:inline-block;width:13px;height:13px;transform:rotate(45deg);border:1px solid rgba(0,0,0,.35);margin-right:8px;flex:0 0 13px;margin-top:5px}
-  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:6px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;break-inside:avoid}
-  .card h4{font-variant:small-caps;letter-spacing:1px;color:var(--ember);font-size:16px;margin-bottom:4px}
-  .card h4 small{color:var(--muted);font-variant:normal;letter-spacing:0;font-size:12.5px}
-  .card .kind{display:inline-block;font-size:12px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;padding:1px 7px;margin-left:6px;color:var(--muted);vertical-align:middle}
-  .card ul{list-style:none;margin-top:6px}
-  .card li{display:flex;align-items:flex-start;padding:2px 0;font-size:15px}
-  .card .pct{margin-left:auto;color:var(--gold);font-weight:bold;padding-left:10px;white-space:nowrap}
-  .f-common{color:var(--rar-common)} .f-uncommon{color:var(--rar-uncommon)} .f-rare{color:var(--rar-rare)} .f-epic{color:var(--rar-epic)}
-  .diamond.d-common{background:var(--rar-common)} .diamond.d-uncommon{background:var(--rar-uncommon)} .diamond.d-rare{background:var(--rar-rare)} .diamond.d-epic{background:var(--rar-epic)}
-  .rec{color:var(--muted);font-size:13.5px;margin-top:7px;border-top:1px dotted var(--line);padding-top:6px}
-  .fish-card{display:flex;gap:10px;align-items:flex-start}
-  .fish-card .body{flex:1}
-  .fish-card .fname{font-weight:bold}
-  .fish-card .fuse{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
-  .spot-card{display:flex;gap:10px;align-items:flex-start}
-  .spot-card .body{flex:1}
-  .spot-card .sname{font-weight:bold;color:var(--ember)}
-  .spot-card .sdetail{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
-  .workflow{list-style:none}
-  ol.workflow{counter-reset:step}
-  ol.workflow li{position:relative;padding:6px 0 6px 46px;margin-bottom:6px}
-  ol.workflow li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:4px;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font-weight:bold;background:var(--panel)}
-  a{color:var(--gem2)}
-  .btn{display:inline-block;padding:11px 26px;border-radius:8px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none;font-weight:bold;letter-spacing:.5px;background:linear-gradient(180deg,rgba(201,162,39,.16),rgba(201,162,39,.05))}
-  .btn:hover{color:var(--ember);border-color:var(--ember)}
-  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:12.5px;font-style:italic;text-align:center}
-  .backhome{display:inline-block;margin-bottom:14px}
-  @media (max-width:760px){
-    .cards{grid-template-columns:1fr}
-    body{font-size:15px}
-    [id]{scroll-margin-top:10px}
-  }
-  @media (max-width:480px){
-    .table-scroll{margin:0 -6px}
-    th,td{padding:7px 8px}
-    table{min-width:520px;font-size:14px}
-    .gem-icon{width:12px;height:12px;margin-right:7px}
-  }
-  @media print{
-    body{background:#fdf9ef;color:#2a2418;padding:6mm}
-    header,header::after{background:#fdf9ef}
-    .note,.card,table{background:#fff;color:#2a2418}
-    th{background:#f3ead2;color:#6b4a08;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    td{border-color:#d8cdb4}
-    .table-scroll{overflow:visible;border-radius:0}
-    table{min-width:0}
-    .diamond,.card,.note,th,.stars,.good,.bad{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .pct,.badge{color:#8a6a00}
-    .f-common{color:#5a564a}.f-uncommon{color:#2e8b2e}.f-rare{color:#1d5fb8}.f-epic{color:#8a3fc7}
-    .btn{color:#6b4a08;border-color:#6b4a08;background:#f3ead2}
-    .backhome{display:none}
-    a[href]::after{content:""}
-  }
-  @page{size:A4;margin:14mm}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
@@ -113,7 +19,7 @@
 <h2>1 · Grundregeln des Angelns</h2>
 <div class="note"><ul class="rules">
 <li>Zum Werfen brauchst du eine <b>Angelrute</b> <u>und</u> <b>Köder</b> im ausgerüsteten Slot — ohne Köder kein Wurf.</li>
-<li><b>Der Köder entscheidet, welcher Fisch überhaupt beißen kann:</b> er gewichtet die 15 Fischarten — steht eine Art auf 0, beißt sie bei diesem Köder nie. Seit 1.0 gilt das pool-weite System; die alten Biom-Tabellen sind überholt.</li>
+<li><b>Der Köder entscheidet, welcher Fisch überhaupt beißen kann:</b> er gewichtet die 15 Fischarten — steht eine Art auf 0, beißt sie bei diesem Köder nie.</li>
 <li><b>Der Spot entscheidet NICHT die Fischarten!</b> Alle Spots nutzen dieselben Fisch-Tabellen — der Spot steuert nur, wie oft <b>Stiefel und Beute</b> statt Fisch drankommen (Abschnitt 4).</li>
 <li>Die Angaben unten sind <b>Anteile pro Fang-Auswahl</b> („wenn ein Fisch beißt"), <u>keine</u> Chance pro Wurf — nasse Stiefel, Beute-Items und Fehlwürfe kommen noch obendrauf.</li>
 <li>Die bessere <b>Rute senkt Stiefel-/Trash-Chancen und erhöht Stamina</b> — für Epische Fische brauchst du zwingend eine starke Rute.</li>
@@ -222,7 +128,7 @@
   <ul>
     <li class="f-epic" style="color:var(--text)"><i class="diamond d-epic"></i>fängt 7 der 15 Arten <span class="pct">Mix</span></li>
   </ul>
-  <div class="rec">Wildköder, kein Rezept — Community-Tipp: der <b>beste Allround-Köder</b> des Spiels. Reiche Quelle: die <b>Fischerinsel (Fishing Island)</b> nahe dem Angler-NPC (Ziel der Quest „Nice Day for Fishing"), dort immer mehrere Frosch-Schwärme. Beim Angeln mit Frosch (wie mit allen Tier-6-Ködern) kann ein <b>Ancient Drak Wand</b> (~1 %) als Beute mit an Land gehen.</div>
+  <div class="rec">Wildköder, kein Rezept — Community-Tipp: der <b>beste Allround-Köder</b> des Spiels. Reiche Quelle: die <b>Fischerinsel (Fishing Island)</b> nahe dem Angler-NPC (Ziel der Quest „Nice Day for Fishing"), dort immer mehrere Frosch-Schwärme. Beim Angeln mit Frosch kann ein <b>Ancient Drak Wand</b> (~1 %) als Beute mit an Land gehen.</div>
 </div>
 
 <div class="card">
@@ -309,7 +215,7 @@
 </div>
 <p style="color:var(--muted);font-size:14px">Kurz zusammengefasst: <b>Köder wählt die Art, Spot wählt die Ausbeute, Rute mildert das Risiko.</b> Wer z. B. Epics jagt, nimmt einen More-Fish-Spot + Epischen Angelköder + Excellent Rod — dieselben Epics droppen aber theoretisch an jedem anderen Gewässer auch, nur mit mehr Stiefel-/Beute-Unterbrechungen.</p>
 
-<h2>5 · Alle 15 Fische <span class="gde" style="font-size:13px;font-variant:normal;letter-spacing:0">(deutsche Namen lt. eprison.de; ohne deutschen Beleg: englischer Name)</span></h2>
+<h2>5 · Alle 15 Fische <span class="gde" style="font-size:13px;font-variant:normal;letter-spacing:0">(deutsche Namen lt. eprison.de/4Players; ohne deutschen Beleg: englischer Name)</span></h2>
 <h3 style="color:var(--rar-common);font-variant:small-caps;letter-spacing:1px;margin:16px 0 8px">◆ Gewöhnlich (Common)</h3>
 <div class="cards">
 <div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Seehüpfer</span> <small class="gde">(Lakehopper)</small><span class="fuse">Bester Köder: Einfacher Angelköder (66,7 %)</span></div></div>
@@ -344,15 +250,15 @@
 <tr><th>Quest</th><th>Was sie bringt</th></tr>
 <tr><td><b>Unknown Waters</b></td><td>Tutorial — freischaltet einfache Angel &amp; Rezept für einfachen Angelköder</td></tr>
 <tr><td><b>A Cursed Catch</b></td><td>Belohnung: Cursed Fishing Rod</td></tr>
-<tr><td><b>Lucky Catch</b></td><td>Belohnung: Lucky Fishing Rod (X-Schild ausgraben, Truhe am Ende) (danach am Fisher craftbar)</td></tr>
-<tr><td><b>Nice Day for Fishing</b></td><td>Belohnung: Excellent Fishing Rod + Zugang zu allen höheren Köder-Rezepten beim Fisher (Zeigt dem Angler einen Epischen Fisch!)</td></tr>
+<tr><td><b>Lucky Catch</b></td><td>Belohnung: Lucky Fishing Rod (X-Schild ausgraben, Truhe am Ende), danach am Fisher craftbar</td></tr>
+<tr><td><b>Nice Day for Fishing</b></td><td>Belohnung: Excellent Fishing Rod + Zugang zu allen höheren Köder-Rezepten beim Fisher (zeigt dem Angler einen Epischen Fisch!)</td></tr>
 </table>
 </div>
 <p style="margin-top:8px;color:var(--muted);font-size:14px">Der <b>Angler (Captain Melville Fontane)</b> sitzt im Wogschimmer-Grund am „Alten Ankerplatz" (erkennbar am großen Drachenschädel mit Steg). In der Questkette landest du auch auf der nahen <b>Fischerinsel</b> — markiere sie: dort gibt es Froschwärme für Köder, und die turbulenten Gewässer ringsum lohnen sich ebenfalls. Einige Köder-Rezepte verlangen übrigens Goldmünzen — <b>Thornridge, Schockflosse und Gelbflosse</b> sind die Crafting-Quellen für Fischgräten/Fischzähne/Electric Nerve, mit denen du die Köder-Kette komplett machst.</p>
 
 <h2>7 · Beute beim Angeln (Loot-Pools)</h2>
 <div class="note"><ul class="rules">
-<li>Je nach Köder landet statt eines Fischs manchmal <b>Sonstige Beute</b> im Netz — der Anteil hängt von der <b>Rute</b> ab (Cursed: 16 %, Lucky: 16 %, Simple: 4 %) und am Spot-Typ (siehe Abschnitt 4).</li>
+<li>Je nach Köder landet statt eines Fischs manchmal <b>Sonstige Beute</b> im Netz — der Anteil hängt von der <b>Rute</b> ab (Cursed: 16 %, Lucky: 16 %, Simple: 4 %) und vom Spot-Typ (siehe Abschnitt 4).</li>
 <li>Mit <b>Maden / Epischem Angelköder II</b>: <b>Ancient Health Potion</b> (~10 %), <b>Ancient Mana Potion</b> (~8 %), <b>Ancient Ring of Health</b> &amp; <b>Ancient Ring of Mana</b> (je ~1,7 %) — beliebter Nebenverdienst.</li>
 <li>Mit <b>Frosch &amp; Tier-6-Ködern</b>: <b>Ancient Drak Wand</b> (~1 %).</li>
 <li>Lucky &amp; Cursed Rute haben zusätzlich interne <b>Trash-/Stiefel-Gewichtung</b>: Lucky drückt Stiefel stark (Faktor 0,5), Cursed erhöht Trash (Faktor 5) — Lucky ist damit die „reinste" Angel, Cursed die Loot-Angel.</li>
@@ -370,16 +276,17 @@
 </ol>
 
 <h2>9 · Weiterführende Links</h2>
-<div class="note" style="text-align:center">
+<div class="map-card">
+<div class="map-title">🗺️ Quellen &amp; Karte</div>
+<div class="map-desc">Die PinDrop-Karte zeigt alle 38 Angel-Spots inkl. Spottypen — so findest du die nächsten „More Fish"-Spots zu deiner Basis.</div>
 <a class="btn" href="https://pindrop.gg/enshrouded/fishing" target="_blank" rel="noopener">PinDrop Fishing Guide &amp; Spots ↗</a>
 &nbsp;&nbsp;
 <a class="btn" href="https://pindrop.gg/enshrouded/map" target="_blank" rel="noopener">PinDrop-Karte (alle 38 Spots) ↗</a>
 &nbsp;&nbsp;
 <a class="btn" href="https://enshrouded.wiki.gg/wiki/Fishing" target="_blank" rel="noopener">Offizielles Wiki: Fishing ↗</a>
-<p style="color:var(--muted);font-size:13.5px;margin-top:10px">Auf der PinDrop-Karte lassen sich die Fishing Spots (inkl. Spottypen) einblenden — so findest du die nächsten „More Fish"-Spots zu deiner Basis.</p>
 </div>
 
-<footer>Quellen: enshrouded.wiki.gg/wiki/Fishing (Catch-Rates, Ruten, Loot-Pools, Spot-Mechanik), pindrop.gg/enshrouded/fishing (Spottypen mit Dateiwerten, 38 Spots, Tier-Daten), keengamer.com (Rezepte), eprison.de (deutsche Gegenstands-Namen), aywren.com &amp; Steam-Community-Guide (Praxis-Tipps) — Stand 2026, Enshrouded 1.0 „Wake of the Water". Deutsche Namen ohne eprison-Beleg sind als „nicht verifiziert" markiert.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert).</footer>
+<footer>Quellen: enshrouded.wiki.gg/wiki/Fishing (Catch-Rates, Ruten, Loot-Pools, Spot-Mechanik), pindrop.gg/enshrouded/fishing (Spottypen mit Dateiwerten, 38 Spots, Tier-Daten), keengamer.com (Rezepte), eprison.de &amp; 4players.de (deutsche Gegenstands-Namen), Steam-Community-Guide (Praxis-Tipps) — Stand 2026, Enshrouded 1.0 „Wake of the Water". Deutsche Namen ohne Beleg sind als „nicht verifiziert" markiert.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert).</footer>
 
 </div>
 </body>
