@@ -43,6 +43,7 @@ th{background:linear-gradient(180deg,#2c2437,#221c2b);font-variant:small-caps;le
 td{padding:8px 10px;border-bottom:1px solid var(--line)}
 tr:last-child td{border-bottom:none}
 .tier{color:var(--gold);font-weight:bold;text-align:center;width:52px}
+.lvl{color:var(--gold);font-weight:bold;white-space:nowrap}
 .good{color:var(--meta);font-weight:bold}
 .bad{color:#e07a6a}
 .stars{color:var(--meta);white-space:nowrap;font-size:14px}
@@ -102,7 +103,8 @@ a.gname:hover{color:var(--ember)!important;border-bottom-color:var(--ember)}
 .g-rare a.gname{color:var(--rar-rare);border-bottom-color:var(--rar-rare)}
 .g-epic a.gname{color:var(--rar-epic);border-bottom-color:var(--rar-epic)}
 .g-legendary a.gname{color:var(--rar-legendary);border-bottom-color:var(--rar-legendary)}
-.gem small{color:var(--gem2)}
+.gsrc{display:block;color:var(--muted);font-size:13.5px;margin-top:3px;line-height:1.4}
+.gsrc small{color:var(--gem2)}
 .star{color:var(--meta);font-size:18px;margin-left:6px;text-shadow:0 0 6px rgba(255,210,77,.45);text-decoration:none}
 .gem.is-meta{background:linear-gradient(90deg,rgba(255,210,77,.06),transparent 65%),var(--panel)}
 .rank-badge{display:inline-block;min-width:26px;text-align:center;padding:1px 7px;margin-right:8px;border-radius:20px;border:1.5px solid var(--meta);color:var(--meta);font-size:13.5px;font-weight:bold;background:rgba(255,210,77,.08);vertical-align:middle}
@@ -204,7 +206,8 @@ footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;color:v
   .table-scroll{overflow:visible;border-radius:0}
   table{min-width:0}
   .cols{column-count:2}
-  .diamond,.card,.note,th,.stars,.good,.bad,.legend,.gicon{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .diamond,.card,.note,th,.stars,.good,.bad,.legend,.gicon,.gsrc,.lvl{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .gsrc,.lvl{color:#5a5243}
   .pct,.badge,.rank-badge,.star{color:#8a6a00}
   .f-common,.g-common a.gname{color:#5a564a}
   .f-uncommon,.g-uncommon a.gname{color:#2e8b2e}
