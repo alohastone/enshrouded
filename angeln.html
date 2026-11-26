@@ -41,11 +41,12 @@
   .good{color:var(--meta);font-weight:bold}
   .bad{color:#e07a6a}
   .stars{color:var(--meta);white-space:nowrap;font-size:14px}
-  .badge{display:inline-block;min-width:22px;text-align:center;padding:0 7px;margin-right:7px;border-radius:20px;border:1.5px solid var(--gold);color:var(--gold);font-size:13.5px;font-weight:bold;background:rgba(201,162,39,.08)}
+  .gde{color:var(--muted);font-style:italic}
   .diamond{display:inline-block;width:13px;height:13px;transform:rotate(45deg);border:1px solid rgba(0,0,0,.35);margin-right:8px;flex:0 0 13px;margin-top:5px}
   .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:6px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;break-inside:avoid}
   .card h4{font-variant:small-caps;letter-spacing:1px;color:var(--ember);font-size:16px;margin-bottom:4px}
+  .card h4 small{color:var(--muted);font-variant:normal;letter-spacing:0;font-size:12.5px}
   .card .kind{display:inline-block;font-size:12px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;padding:1px 7px;margin-left:6px;color:var(--muted);vertical-align:middle}
   .card ul{list-style:none;margin-top:6px}
   .card li{display:flex;align-items:flex-start;padding:2px 0;font-size:15px}
@@ -62,14 +63,14 @@
   .spot-card .sname{font-weight:bold;color:var(--ember)}
   .spot-card .sdetail{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
   .workflow{list-style:none}
-  .workflow li{position:relative;padding:6px 0 6px 46px;margin-bottom:6px}
-  .workflow li::before{position:absolute;left:0;top:4px;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font-weight:bold;background:var(--panel)}
   ol.workflow{counter-reset:step}
-  ol.workflow li::before{counter-increment:step;content:counter(step)}
+  ol.workflow li{position:relative;padding:6px 0 6px 46px;margin-bottom:6px}
+  ol.workflow li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:4px;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font-weight:bold;background:var(--panel)}
   a{color:var(--gem2)}
   .btn{display:inline-block;padding:11px 26px;border-radius:8px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none;font-weight:bold;letter-spacing:.5px;background:linear-gradient(180deg,rgba(201,162,39,.16),rgba(201,162,39,.05))}
   .btn:hover{color:var(--ember);border-color:var(--ember)}
   footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:12.5px;font-style:italic;text-align:center}
+  .backhome{display:inline-block;margin-bottom:14px}
   @media (max-width:760px){
     .cards{grid-template-columns:1fr}
     body{font-size:15px}
@@ -93,6 +94,7 @@
     .pct,.badge{color:#8a6a00}
     .f-common{color:#5a564a}.f-uncommon{color:#2e8b2e}.f-rare{color:#1d5fb8}.f-epic{color:#8a3fc7}
     .btn{color:#6b4a08;border-color:#6b4a08;background:#f3ead2}
+    .backhome{display:none}
     a[href]::after{content:""}
   }
   @page{size:A4;margin:14mm}
@@ -101,9 +103,11 @@
 <body>
 <div class="wrap">
 
+<a class="btn backhome" href="index.html">← Zurück zur Übersicht</a>
+
 <header>
-  <h1><span class="gem-icon"></span>Enshrouded</h1>
-  <div class="sub">Angeln &amp; Köder — komplette Übersicht (Update 1.0 „Wake of the Water") · Detaildaten: <a href="https://enshrouded.wiki.gg/wiki/Fishing" target="_blank" rel="noopener">enshrouded.wiki.gg/wiki/Fishing</a> · <a href="https://pindrop.gg/enshrouded/fishing" target="_blank" rel="noopener">pindrop.gg/enshrouded/fishing</a></div>
+  <h1><span class="gem-icon"></span>Enshrouded — Angeln</h1>
+  <div class="sub">Köder, Fische, Spots &amp; Ruten — komplette Übersicht (Update 1.0 „Wake of the Water") · Detaildaten: <a href="https://enshrouded.wiki.gg/wiki/Fishing" target="_blank" rel="noopener">enshrouded.wiki.gg/wiki/Fishing</a> · <a href="https://pindrop.gg/enshrouded/fishing" target="_blank" rel="noopener">pindrop.gg/enshrouded/fishing</a></div>
 </header>
 
 <h2>1 · Grundregeln des Angelns</h2>
@@ -112,27 +116,27 @@
 <li><b>Der Köder entscheidet, welcher Fisch überhaupt beißen kann:</b> er gewichtet die 15 Fischarten — steht eine Art auf 0, beißt sie bei diesem Köder nie. Seit 1.0 gilt das pool-weite System; die alten Biom-Tabellen sind überholt.</li>
 <li><b>Der Spot entscheidet NICHT die Fischarten!</b> Alle Spots nutzen dieselben Fisch-Tabellen — der Spot steuert nur, wie oft <b>Stiefel und Beute</b> statt Fisch drankommen (Abschnitt 4).</li>
 <li>Die Angaben unten sind <b>Anteile pro Fang-Auswahl</b> („wenn ein Fisch beißt"), <u>keine</u> Chance pro Wurf — nasse Stiefel, Beute-Items und Fehlwürfe kommen noch obendrauf.</li>
-<li>Die bessere <b>Rute senkt Stiefel/Trash-Chancen und erhöht Stamina</b> — für Epische Fische brauchst du zwingend eine starke Rute.</li>
+<li>Die bessere <b>Rute senkt Stiefel-/Trash-Chancen und erhöht Stamina</b> — für Epische Fische brauchst du zwingend eine starke Rute.</li>
 <li>Im Skilltree gibt es ein Talent für <b>+30 % Angel-Stamina</b> — früh mitnehmen.</li>
 <li>Bevor ein Fisch anbeißt, sieht man ihn oft <b>an der Wasseroberfläche</b> — mit etwas Übung erkennst du die Art am Aussehen, bevor du anhakst.</li>
-<li>Geangelte Fische lassen sich am <b>Seafood Grill</b> zu Mahlzeiten verarbeiten (u. a. Sauerstoff-Speisen für Tauchgänge).</li>
+<li>Geangelte Fische lassen sich am <b>Fisch- und Meeresfrüchte-Grill</b> zu Mahlzeiten verarbeiten (u. a. Sauerstoff-Speisen für Tauchgänge).</li>
 </ul></div>
 
 <h2>2 · Alle 5 Angelruten</h2>
 <div class="table-scroll">
 <table>
 <tr><th>Rute</th><th>Stärke</th><th>Fisch / Stiefel / Sonstiges</th><th>Wie erhältlich</th></tr>
-<tr><td><b>Simple Fishing Rod</b></td><td class="tier">30</td><td><span class="good">88 %</span> Fisch · 8 % Stiefel · 4 % Sonstiges</td><td>Manuelles Handwerk: 2 Zweige, 2 Metallschrott, 1 Garn (Quest „Unknown Waters")</td></tr>
-<tr><td><b>Cursed Fishing Rod</b></td><td class="tier">40</td><td>64 % Fisch · 20 % Stiefel · 16 % Sonstiges <span class="gde">(Loot-Rute!)</span></td><td>Belohnung der Quest „A Cursed Catch"</td></tr>
-<tr><td><b>Improved Fishing Rod</b></td><td class="tier">45</td><td><span class="good">86 %</span> Fisch · 6 % Stiefel · 8 % Sonstiges</td><td>Beim Jäger: 1 Palmenholzstamm, 2 Eisenbarren, 1 Garn, 1 Farbpalette</td></tr>
-<tr><td><b>Lucky Fishing Rod</b></td><td class="tier">50</td><td>82 % Fisch · <span class="good">2 %</span> Stiefel · 16 % Sonstiges <span class="gde">(wenig Trash, viel Beute)</span></td><td>Quest „Lucky Catch" (Truhe unter dem X-Schild am Angler-Insel-Umfeld), danach beim Fisher craftbar: 2 Bambusstämme, 1 Stahlbarren, 1 Garn, 1 Goldstaub, 5 Goldmünzen</td></tr>
-<tr><td><b>Excellent Fishing Rod</b></td><td class="tier">55</td><td><span class="good">86 %</span> Fisch · 4 % Stiefel · 10 % Sonstiges — <span class="good">Beste Endgame-Rute</span></td><td>Quest „Nice Day for Fishing", danach beim Fisher craftbar: 1 Tropenholz, 1 Stahlbarren, 1 Garn, 1 Goldstaub, 1 Goldmünze</td></tr>
+<tr><td><b>Simple Fishing Rod</b> <span class="gde">(einfache Angel)</span></td><td class="tier">30</td><td><span class="good">88 %</span> Fisch · 8 % Stiefel · 4 % Sonstiges</td><td>Manuelles Handwerk: 2 Zweige, 2 Metallschrott, 1 Garn (Quest „Unknown Waters")</td></tr>
+<tr><td><b>Cursed Fishing Rod</b> <span class="gde">(verfluchte Angel)</span></td><td class="tier">40</td><td>64 % Fisch · 20 % Stiefel · 16 % Sonstiges <span class="gde">(Loot-Angel!)</span></td><td>Belohnung der Quest „A Cursed Catch"</td></tr>
+<tr><td><b>Improved Fishing Rod</b> <span class="gde">(verbesserte Angel)</span></td><td class="tier">45</td><td><span class="good">86 %</span> Fisch · 6 % Stiefel · 8 % Sonstiges</td><td>Beim Jäger: 1 Palmenholzstamm, 2 Eisenbarren, 1 Garn, 1 Farbpalette</td></tr>
+<tr><td><b>Lucky Fishing Rod</b> <span class="gde">(Glücks-Angel)</span></td><td class="tier">50</td><td>82 % Fisch · <span class="good">2 %</span> Stiefel · 16 % Sonstiges <span class="gde">(wenig Trash, viel Beute)</span></td><td>Quest „Lucky Catch" (Truhe unter dem X-Schild), danach beim Fisher craftbar: 2 Bambusstäemme, 1 Stahlbarren, 1 Garn, 1 Goldstaub, 5 Goldmünzen</td></tr>
+<tr><td><b>Excellent Fishing Rod</b> <span class="gde">(ausgezeichnete Angel)</span></td><td class="tier">55</td><td><span class="good">86 %</span> Fisch · 4 % Stiefel · 10 % Sonstiges — <span class="good">Beste Endgame-Angel</span></td><td>Quest „Nice Day for Fishing", danach beim Fisher craftbar: 1 Tropenholz, 1 Stahlbarren, 1 Garn, 1 Goldstaub, 1 Goldmünze</td></tr>
 </table>
 </div>
 <p style="margin-top:8px;color:var(--muted);font-size:14px">Faustregel: <b>Lucky</b>, wenn du sauber fischen willst (fast keine Stiefel), <b>Excellent</b> für maximale Stamina gegen Epische Fische, <b>Cursed</b>, wenn du gezielt Beute-Items absahnen willst. Die Rute multipliziert die Stiefel-/Trash-Werte des Spots — mit der Lucky Rod entschärfst du also auch schlechte Spots.</p>
 
 <h2 id="baits">3 · Alle 13 Köder — was beißt worauf?</h2>
-<p style="margin:0 0 10px;color:var(--muted);font-size:14px">Es gibt <b>7 Wildköder</b> (Tiere/Insekten, die du in der Welt sammelst, teils als Bonus beim Sammeln von Pflanzen) und <b>6 craftbare Köder</b> (beim Angler-NPC). Die Fische sind nach Rarität eingefärbt:</p>
+<p style="margin:0 0 10px;color:var(--muted);font-size:14px">Es gibt <b>7 Wildköder</b> (Tiere/Insekten, die du in der Welt sammelst, teils als Bonus beim Sammeln von Pflanzen) und <b>6 craftbare Köder</b> (beim Angler-NPC). Die Fische sind nach Rarität eingefärbt. Köder, deren deutsche Bezeichnung ich nicht offiziell verifizieren konnte, sind mit (*) markiert:</p>
 <div class="note" style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin-bottom:14px">
 <span><i class="diamond d-common"></i><span class="f-common">Gewöhnlich</span></span>
 <span><i class="diamond d-uncommon"></i><span class="f-uncommon">Ungewöhnlich</span></span>
@@ -142,47 +146,47 @@
 
 <div class="cards">
 <div class="card">
-  <h4>Simple Fishing Bait <span class="kind">crafted</span></h4>
+  <h4>Einfacher Angelköder* <small>(Simple Fishing Bait)</small> <span class="kind">crafted</span></h4>
   <ul>
-    <li class="f-common"><i class="diamond d-common"></i>Lakehopper <span class="pct">66,7 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Shimmerfin <span class="pct">33,3 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Seehüpfer <span class="pct">66,7 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Schimmerflosse <span class="pct">33,3 %</span></li>
   </ul>
   <div class="rec">Rezept (manuelles Handwerk): 1 Critter Parts + 4 Pflanzenfasern <i>oder</i> Papierrohr → <b>5 Köder</b>. Einsteiger-Köder, fängt nur die 2 Basenfische.</div>
 </div>
 
 <div class="card">
-  <h4>Fire Fly <span class="kind">wild</span></h4>
+  <h4>Glühwürmchen <small>(Fire Fly)</small> <span class="kind">wild</span></h4>
   <ul>
-    <li class="f-common"><i class="diamond d-common"></i>Shimmerfin <span class="pct">47,2 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Lakehopper <span class="pct">47,2 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Schimmerflosse <span class="pct">47,2 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Seehüpfer <span class="pct">47,2 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Sunscale <span class="pct">2,8 %</span></li>
-    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Stripetail <span class="pct">2,8 %</span></li>
+    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Streifenflosse <span class="pct">2,8 %</span></li>
   </ul>
   <div class="rec">Wildköder — in der Welt sammeln (Hochweiden, nachts gut zu finden), kein Rezept.</div>
 </div>
 
 <div class="card">
-  <h4>Moth <span class="kind">wild</span></h4>
+  <h4>Motte <small>(Moth)</small> <span class="kind">wild</span></h4>
   <ul>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Sunscale <span class="pct">32,3 %</span></li>
-    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Stripetail <span class="pct">32,3 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Shimmerfin <span class="pct">13,4 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Lakehopper <span class="pct">13,4 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Silverback <span class="pct">5,4 %</span></li>
+    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Streifenflosse <span class="pct">32,3 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Schimmerflosse <span class="pct">13,4 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Seehüpfer <span class="pct">13,4 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Silberrücken <span class="pct">5,4 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Whiskerfin <span class="pct">3,2 %</span></li>
   </ul>
   <div class="rec">Wildköder — in der Welt sammeln (v. a. Düsterdickicht, nachts), kein Rezept.</div>
 </div>
 
 <div class="card">
-  <h4>Grasshopper <span class="kind">wild</span></h4>
+  <h4>Heuschrecke <small>(Grasshopper)</small> <span class="kind">wild</span></h4>
   <ul>
-    <li class="f-common"><i class="diamond d-common"></i>Silverback <span class="pct">37,2 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Silberrücken <span class="pct">37,2 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Whiskerfin <span class="pct">31,9 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Sunscale <span class="pct">8,0 %</span></li>
-    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Stripetail <span class="pct">8,0 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Shimmerfin <span class="pct">5,3 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Lakehopper <span class="pct">5,3 %</span></li>
+    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Streifenflosse <span class="pct">8,0 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Schimmerflosse <span class="pct">5,3 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Seehüpfer <span class="pct">5,3 %</span></li>
     <li class="f-rare"><i class="diamond d-rare"></i>Emberfin <span class="pct">2,1 %</span></li>
     <li class="f-rare"><i class="diamond d-rare"></i>Waveleaper <span class="pct">2,1 %</span></li>
   </ul>
@@ -190,39 +194,39 @@
 </div>
 
 <div class="card">
-  <h4>Scarab <span class="kind">wild</span></h4>
+  <h4>Skarabäus <small>(Scarab)</small> <span class="kind">wild</span></h4>
   <ul>
     <li class="f-rare"><i class="diamond d-rare"></i>Emberfin <span class="pct">30,8 %</span></li>
     <li class="f-rare"><i class="diamond d-rare"></i>Waveleaper <span class="pct">30,8 %</span></li>
-    <li class="f-common"><i class="diamond d-common"></i>Silverback <span class="pct">11,5 %</span></li>
+    <li class="f-common"><i class="diamond d-common"></i>Silberrücken <span class="pct">11,5 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Whiskerfin <span class="pct">11,5 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Sunscale <span class="pct">4,6 %</span></li>
-    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Stripetail <span class="pct">4,6 %</span></li>
-    <li class="f-rare"><i class="diamond d-rare"></i>Crimsonback <span class="pct">3,1 %</span></li>
-    <li class="f-rare"><i class="diamond d-rare"></i>Shadowtail <span class="pct">3,1 %</span></li>
+    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Streifenflosse <span class="pct">4,6 %</span></li>
+    <li class="f-rare"><i class="diamond d-rare"></i>Purpurrücken <span class="pct">3,1 %</span></li>
+    <li class="f-rare"><i class="diamond d-rare"></i>Schattenflosse <span class="pct">3,1 %</span></li>
   </ul>
   <div class="rec">Wildköder — in der Welt sammeln (v. a. Ödland), kein Rezept. Beste Wild-Köder-Option für Seltene Fische.</div>
 </div>
 
 <div class="card">
-  <h4>Pillbug <span class="kind">wild</span></h4>
+  <h4>Assel <small>(Pillbug)</small> <span class="kind">wild</span></h4>
   <ul>
-    <li class="f-rare"><i class="diamond d-rare"></i>Shadowtail <span class="pct">33,8 %</span></li>
-    <li class="f-rare"><i class="diamond d-rare"></i>Crimsonback <span class="pct">33,8 %</span></li>
+    <li class="f-rare"><i class="diamond d-rare"></i>Schattenflosse <span class="pct">33,8 %</span></li>
+    <li class="f-rare"><i class="diamond d-rare"></i>Purpurrücken <span class="pct">33,8 %</span></li>
   </ul>
   <div class="rec">Wildköder — in der Welt sammeln (v. a. Albapracht-Gipfel), kein Rezept. Fängt insgesamt 9 der 15 Arten.</div>
 </div>
 
 <div class="card">
-  <h4>Frog <span class="kind">wild · Geheimtipp</span></h4>
+  <h4>Frosch <small>(Frog)</small> <span class="kind">wild · Geheimtipp</span></h4>
   <ul>
     <li class="f-epic" style="color:var(--text)"><i class="diamond d-epic"></i>fängt 7 der 15 Arten <span class="pct">Mix</span></li>
   </ul>
-  <div class="rec">Wildköder, kein Rezept — Community-Tipp: der <b>beste Allround-Köder</b> des Spiels. Reiche Quelle: die <b>Angler-Insel (Fishing Island)</b> nahe dem Angler-NPC (Ziel der Quest „Nice Day for Fishing"). Außerdem: beim Angeln mit Frog (wie mit allen Tier-6-Ködern) kann ein <b>Ancient Drak Wand</b> (~1 %) als Beute mit an Land gehen.</div>
+  <div class="rec">Wildköder, kein Rezept — Community-Tipp: der <b>beste Allround-Köder</b> des Spiels. Reiche Quelle: die <b>Fischerinsel (Fishing Island)</b> nahe dem Angler-NPC (Ziel der Quest „Nice Day for Fishing"), dort immer mehrere Frosch-Schwärme. Beim Angeln mit Frosch (wie mit allen Tier-6-Ködern) kann ein <b>Ancient Drak Wand</b> (~1 %) als Beute mit an Land gehen.</div>
 </div>
 
 <div class="card">
-  <h4>Maggots <span class="kind">wild · Tier 7</span></h4>
+  <h4>Maden* <small>(Maggots)</small> <span class="kind">wild · Tier 7</span></h4>
   <ul>
     <li class="f-epic" style="color:var(--text)"><i class="diamond d-epic"></i>fängt 7 der 15 Arten <span class="pct">Mix</span></li>
   </ul>
@@ -230,51 +234,51 @@
 </div>
 
 <div class="card">
-  <h4>Common Fishing Bait <span class="kind">crafted</span></h4>
+  <h4>Gewöhnlicher Angelköder <small>(Common Fishing Bait)</small> <span class="kind">crafted</span></h4>
   <ul>
     <li class="f-common"><i class="diamond d-common"></i>nur die 3 Common-Fische <span class="pct">3/15</span></li>
   </ul>
-  <div class="rec">Rezept (Fisher): 2 Glühwürmchen, 10 Goldmünzen, 2 Capybara-Borsten, 1 Fischgräte → <b>10 Köder</b>.</div>
+  <div class="rec">Rezept (Fisher): 2 Glühwürmchen, 10 Goldmünzen, 2 Kapibaraborsten, 1 Fischgräte → <b>10 Köder</b>.</div>
 </div>
 
 <div class="card">
-  <h4>Uncommon Fishing Bait <span class="kind">crafted</span></h4>
+  <h4>Ungewöhnlicher Angelköder <small>(Uncommon Fishing Bait)</small> <span class="kind">crafted</span></h4>
   <ul>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Sunscale <span class="pct">33,3 %</span></li>
-    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Stripetail <span class="pct">33,3 %</span></li>
+    <li class="f-uncommon"><i class="diamond d-uncommon"></i>Streifenflosse <span class="pct">33,3 %</span></li>
     <li class="f-uncommon"><i class="diamond d-uncommon"></i>Whiskerfin <span class="pct">33,3 %</span></li>
   </ul>
-  <div class="rec">Rezept (Fisher): 1 Motte, 12 Goldmünzen, 2 Capybara-Borsten, 1 Fischgräte, 1 Heupferd → <b>10 Köder</b>.</div>
+  <div class="rec">Rezept (Fisher): 1 Motte, 12 Goldmünzen, 2 Kapibaraborsten, 1 Fischgräte, 1 Heuschrecke → <b>10 Köder</b>.</div>
 </div>
 
 <div class="card">
-  <h4>Rare Fishing Bait <span class="kind">crafted</span></h4>
+  <h4>Seltener Angelköder <small>(Rare Fishing Bait)</small> <span class="kind">crafted</span></h4>
   <ul>
-    <li class="f-rare"><i class="diamond d-rare"></i>Crimsonback <span class="pct">25 %</span></li>
+    <li class="f-rare"><i class="diamond d-rare"></i>Purpurrücken <span class="pct">25 %</span></li>
     <li class="f-rare"><i class="diamond d-rare"></i>Emberfin <span class="pct">25 %</span></li>
-    <li class="f-rare"><i class="diamond d-rare"></i>Shadowtail <span class="pct">25 %</span></li>
+    <li class="f-rare"><i class="diamond d-rare"></i>Schattenflosse <span class="pct">25 %</span></li>
     <li class="f-rare"><i class="diamond d-rare"></i>Waveleaper <span class="pct">25 %</span></li>
   </ul>
-  <div class="rec">Rezept (Fisher): 1 Skarabäus, 15 Goldmünzen, 2 Capybara-Borsten, 1 Fischzahn, 1 Assel → <b>10 Köder</b>.</div>
+  <div class="rec">Rezept (Fisher): 1 Skarabäus, 15 Goldmünzen, 2 Kapibaraborsten, 1 Fischzahn, 1 Assel → <b>10 Köder</b>.</div>
 </div>
 
 <div class="card">
-  <h4>Epic Fishing Bait I <span class="kind">crafted</span></h4>
+  <h4>Epischer Angelköder <small>(Epic Fishing Bait I)</small> <span class="kind">crafted</span></h4>
   <ul>
-    <li class="f-epic"><i class="diamond d-epic"></i>Shockfin <span class="pct">33,3 %</span></li>
+    <li class="f-epic"><i class="diamond d-epic"></i>Schockflosse <span class="pct">33,3 %</span></li>
     <li class="f-epic"><i class="diamond d-epic"></i>Thornridge <span class="pct">33,3 %</span></li>
-    <li class="f-epic"><i class="diamond d-epic"></i>Yellowfin <span class="pct">33,3 %</span></li>
+    <li class="f-epic"><i class="diamond d-epic"></i>Gelbflosse <span class="pct">33,3 %</span></li>
   </ul>
-  <div class="rec">Rezept (Fisher): 1 Frosch, 20 Goldmünzen, 2 Capybara-Borsten, 1 Fischzahn → <b>10 Köder</b>.</div>
+  <div class="rec">Rezept (Fisher): 1 Frosch, 20 Goldmünzen, 2 Kapibaraborsten, 1 Fischzahn → <b>10 Köder</b>.</div>
 </div>
 
 <div class="card">
-  <h4>Epic Fishing Bait II <span class="kind">crafted · Tier 7</span></h4>
+  <h4>Epischer Angelköder II* <small>(Epic Fishing Bait II)</small> <span class="kind">crafted · Tier 7</span></h4>
   <ul>
-    <li class="f-epic"><i class="diamond d-epic"></i>Cinderscale <span class="pct">50 %</span></li>
-    <li class="f-epic"><i class="diamond d-epic"></i>Specklefin <span class="pct">50 %</span></li>
+    <li class="f-epic"><i class="diamond d-epic"></i>Glutschuppe <span class="pct">50 %</span></li>
+    <li class="f-epic"><i class="diamond d-epic"></i>Fleckenflosse <span class="pct">50 %</span></li>
   </ul>
-  <div class="rec">Rezept (Fisher): 1 Maden, 20 Goldmünzen, 2 Archaische Scherben, 1 Fischschuppe → <b>10 Köder</b>. Einzig zuverlässiger Weg zu Cinderscale &amp; Specklefin.</div>
+  <div class="rec">Rezept (Fisher): 1 Maden, 20 Goldmünzen, 2 Archaische Scherben, 1 Fischschuppe → <b>10 Köder</b>. Einzig zuverlässiger Weg zu Glutschuppe &amp; Fleckenflosse.</div>
 </div>
 </div>
 <p style="color:var(--muted);font-size:14px">Merksatz: <b>Köder &gt; Spot</b> — suche dir zuerst den Zielfisch aus, dann den passenden Köder (jede Fisch-Karte in Abschnitt 5 nennt den besten Köder), und angeln kannst du damit an jedem Gewässer bzw. offiziellen Angelspot.</p>
@@ -288,7 +292,7 @@
 <tr><td><b>More Treasure</b> <span class="gde">(Mehr Beute)</span></td><td class="tier">16</td><td>0,04</td><td><span class="good">0,01</span></td><td><span class="stars">★★☆</span> Häufigster Typ, solide Balance, leichter Beute-Bonus</td></tr>
 <tr><td><b>Default</b> <span class="gde">(Normalwasser)</span></td><td class="tier">0*</td><td>0,04</td><td>0,04</td><td>Basiswert — gilt für gewöhnliches Wasser ohne platzierten Spot (auch selbstgegrabene Basisteiche)</td></tr>
 <tr><td><b>Few fish, treasure &amp; trash</b> <span class="gde">(Wenig Fisch, Beute &amp; Müll)</span></td><td class="tier">9</td><td>0,08</td><td>0,08</td><td><span class="stars">★☆☆</span> Deutlich mehr Aussetzer — nur für Beute-Läufe mit passender Rute</td></tr>
-<tr><td><b>Few fish, mostly treasure</b> <span class="gde">(Wenig Fisch, fast nur Beute)</span></td><td class="tier">2</td><td><span class="good">0,12</span></td><td>0,10</td><td><span class="stars">★★☆</span> <span class="good">Beutenase:</span> mit Cursed Rod / Maggots der Loot-Farm-Spot</td></tr>
+<tr><td><b>Few fish, mostly treasure</b> <span class="gde">(Wenig Fisch, fast nur Beute)</span></td><td class="tier">2</td><td><span class="good">0,12</span></td><td>0,10</td><td><span class="stars">★★☆</span> <span class="good">Beutenase:</span> mit Cursed Rod / Maden der Loot-Farm-Spot</td></tr>
 <tr><td><b>Few fish, mostly trash</b> <span class="gde">(Wenig Fisch, fast nur Müll)</span></td><td class="tier">1</td><td>0,08</td><td><span class="bad">0,30</span></td><td><span class="stars">✖</span> <span class="bad">Möglichst meiden</span> — sehr hohe Stiefel-Quote (mit Lucky Rod abmilderbar)</td></tr>
 </table>
 </div>
@@ -297,72 +301,72 @@
 <h3>Die besten Spots im Überblick</h3>
 <div class="cards">
 <div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Für Fisch-Farming: „More Fish"-Spots</span><span class="sdetail">10 Stück in der Welt, minimale Trash-/Stiefel-Werte (0,01/0,01). Hier ist fast jeder Wurf ein Fisch — ideal für gezielte Farm-Läufe mit craftbaren Ködern. Positionsliste auf der PinDrop-Karte (Filter „Fishing Spot").</span></div></div>
-<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Für Beute-Jäger: „Mostly treasure"-Spots</span><span class="sdetail">Nur 2 Stück — kombinier mit Cursed Rod (Faktor 5 auf Trash) + Maggots/Epic Bait II für alte Tränke &amp; Ringe. Vorsicht: auch die Stiefelquote steigt — ohne Lucky-/Cursed-Rod frustig.</span></div></div>
-<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Fürs Endgame: Angler-Insel (Wogschimmer-Grund)</span><span class="sdetail">Der Fisher empfiehlt sie selbst für Epische Fische; ringsum liegen mehrere Spots und die turbulenten Gewässer. Zusätzlich beste Frosch-Quelle des Spiels — Ködernachschub direkt vor Ort.</span></div></div>
-<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Fürs frühe Spiel: Teiche in den Hochweiden</span><span class="sdetail">Community-Tipp: Teiche nahe Woodgard, der Springlands-Spire und dem Startgewölbe. Für den ersten Fang reicht jedes Gewässer — der Spot-Typ ist für Common-Fische mit Simple Bait fast egal.</span></div></div>
-<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Bequeme Dauerlösung: Eigener Basisteich</span><span class="sdetail">Auch von Spielern gegrabene Teiche am Base funktionieren vollständig (Default-Werte 0,04/0,04) — angeln ohne Reisezeit, direkt neben Lagerfeuer und Seafood Grill.</span></div></div>
+<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Für Beute-Jäger: „Mostly treasure"-Spots</span><span class="sdetail">Nur 2 Stück — kombinier mit Cursed Rod (Faktor 5 auf Trash) + Maden/Epischem Angelköder II für alte Tränke &amp; Ringe. Vorsicht: auch die Stiefelquote steigt — ohne Lucky-/Cursed-Rod frustig.</span></div></div>
+<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Fürs Endgame: Fischerinsel (Wogschimmer-Grund)</span><span class="sdetail">Der Fisher empfiehlt sie selbst für Epische Fische; ringsum liegen mehrere Spots und die turbulenten Gewässer. Zusätzlich beste Frosch-Quelle des Spiels — Ködernachschub direkt vor Ort.</span></div></div>
+<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Fürs frühe Spiel: Teiche in den Hochweiden</span><span class="sdetail">Community-Tipp: Teiche nahe Woodgard, der Springlands-Warte und dem Startgewölbe. Für den ersten Fang reicht jedes Gewässer — der Spot-Typ ist für Common-Fische mit einfachem Köder fast egal.</span></div></div>
+<div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Bequeme Dauerlösung: Eigener Basisteich</span><span class="sdetail">Auch von Spielern gegrabene Teiche am Base funktionieren vollständig (Default-Werte 0,04/0,04) — angeln ohne Reisezeit, direkt neben Lagerfeuer und Fisch-Grill. Geangelte Fische können auch im Teich wieder ausgesetzt werden!</span></div></div>
 <div class="card spot-card"><i class="diamond" style="background:var(--gold)"></i><div class="body"><span class="sname">Fischschulen im Wogschimmer-Grund</span><span class="sdetail">Im Wasser-Biom sichtbare Fischschulen (Bootsfahrt lohnt sich) — optischer Hinweis auf gute Gewässerabschnitte; 10 der 38 Spots liegen dort, mehr als in jedem anderen Biom.</span></div></div>
 </div>
-<p style="color:var(--muted);font-size:14px">Kurz zusammengefasst: <b>Köder wählt die Art, Spot wählt die Ausbeute, Rute mildert das Risiko.</b> Wer z. B. Epics jagt, nimmt einen More-Fish-Spot + Epic Bait + Excellent Rod — dieselben Epics droppen aber theoretisch an jedem anderen Gewässer auch, nur mit mehr Stiefel-/Beute-Unterbrechungen.</p>
+<p style="color:var(--muted);font-size:14px">Kurz zusammengefasst: <b>Köder wählt die Art, Spot wählt die Ausbeute, Rute mildert das Risiko.</b> Wer z. B. Epics jagt, nimmt einen More-Fish-Spot + Epischen Angelköder + Excellent Rod — dieselben Epics droppen aber theoretisch an jedem anderen Gewässer auch, nur mit mehr Stiefel-/Beute-Unterbrechungen.</p>
 
-<h2>5 · Alle 15 Fische</h2>
+<h2>5 · Alle 15 Fische <span class="gde" style="font-size:13px;font-variant:normal;letter-spacing:0">(deutsche Namen lt. eprison.de; ohne deutschen Beleg: englischer Name)</span></h2>
 <h3 style="color:var(--rar-common);font-variant:small-caps;letter-spacing:1px;margin:16px 0 8px">◆ Gewöhnlich (Common)</h3>
 <div class="cards">
-<div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Lakehopper</span><span class="fuse">Bester Köder: Simple Fishing Bait (66,7 %)</span></div></div>
-<div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Shimmerfin</span><span class="fuse">Bester Köder: Fire Fly oder Simple Bait</span></div></div>
-<div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Silverback</span><span class="fuse">Bester Köder: Grasshopper (37,2 %)</span></div></div>
+<div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Seehüpfer</span> <small class="gde">(Lakehopper)</small><span class="fuse">Bester Köder: Einfacher Angelköder (66,7 %)</span></div></div>
+<div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Schimmerflosse</span> <small class="gde">(Shimmerfin)</small><span class="fuse">Bester Köder: Glühwürmchen oder einfacher Angelköder</span></div></div>
+<div class="card fish-card"><i class="diamond d-common" style="width:15px;height:15px"></i><div class="body"><span class="fname f-common">Silberrücken</span> <small class="gde">(Silverback)</small><span class="fuse">Bester Köder: Heuschrecke (37,2 %)</span></div></div>
 </div>
 <h3 style="color:var(--rar-uncommon);font-variant:small-caps;letter-spacing:1px;margin:16px 0 8px">◆ Ungewöhnlich (Uncommon)</h3>
 <div class="cards">
-<div class="card fish-card"><i class="diamond d-uncommon" style="width:15px;height:15px"></i><div class="body"><span class="fname f-uncommon">Sunscale</span><span class="fuse">Bester Köder: Moth (32,3 %) oder Uncommon Bait</span></div></div>
-<div class="card fish-card"><i class="diamond d-uncommon" style="width:15px;height:15px"></i><div class="body"><span class="fname f-uncommon">Stripetail</span><span class="fuse">Bester Köder: Moth (32,3 %) oder Uncommon Bait</span></div></div>
-<div class="card fish-card"><i class="diamond d-uncommon" style="width:15px;height:15px"></i><div class="body"><span class="fname f-uncommon">Whiskerfin</span><span class="fuse">Bester Köder: Grasshopper (31,9 %) oder Uncommon Bait</span></div></div>
+<div class="card fish-card"><i class="diamond d-uncommon" style="width:15px;height:15px"></i><div class="body"><span class="fname f-uncommon">Sunscale</span> <small class="gde">(dt. Bezeichnung nicht verifiziert)</small><span class="fuse">Bester Köder: Motte (32,3 %) oder ungewöhnlicher Angelköder</span></div></div>
+<div class="card fish-card"><i class="diamond d-uncommon" style="width:15px;height:15px"></i><div class="body"><span class="fname f-uncommon">Streifenflosse</span> <small class="gde">(Stripetail)</small><span class="fuse">Bester Köder: Motte (32,3 %) oder ungewöhnlicher Angelköder</span></div></div>
+<div class="card fish-card"><i class="diamond d-uncommon" style="width:15px;height:15px"></i><div class="body"><span class="fname f-uncommon">Whiskerfin</span> <small class="gde">(dt. Bezeichnung nicht verifiziert)</small><span class="fuse">Bester Köder: Heuschrecke (31,9 %) oder ungewöhnlicher Angelköder</span></div></div>
 </div>
 <h3 style="color:var(--rar-rare);font-variant:small-caps;letter-spacing:1px;margin:16px 0 8px">◆ Selten (Rare)</h3>
 <div class="cards">
-<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Emberfin</span><span class="fuse">Bester Köder: Scarab (30,8 %) oder Rare Bait</span></div></div>
-<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Waveleaper</span><span class="fuse">Bester Köder: Scarab (30,8 %) oder Rare Bait</span></div></div>
-<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Crimsonback</span><span class="fuse">Bester Köder: Pillbug (33,8 %) oder Rare Bait</span></div></div>
-<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Shadowtail</span><span class="fuse">Bester Köder: Pillbug (33,8 %) oder Rare Bait</span></div></div>
+<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Emberfin</span> <small class="gde">(dt. Bezeichnung nicht verifiziert)</small><span class="fuse">Bester Köder: Skarabäus (30,8 %) oder seltener Angelköder</span></div></div>
+<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Waveleaper</span> <small class="gde">(dt. Bezeichnung nicht verifiziert)</small><span class="fuse">Bester Köder: Skarabäus (30,8 %) oder seltener Angelköder</span></div></div>
+<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Purpurrücken</span> <small class="gde">(Crimsonback)</small><span class="fuse">Bester Köder: Assel (33,8 %) oder seltener Angelköder</span></div></div>
+<div class="card fish-card"><i class="diamond d-rare" style="width:15px;height:15px"></i><div class="body"><span class="fname f-rare">Schattenflosse</span> <small class="gde">(Shadowtail)</small><span class="fuse">Bester Köder: Assel (33,8 %) oder seltener Angelköder</span></div></div>
 </div>
 <h3 style="color:var(--rar-epic);font-variant:small-caps;letter-spacing:1px;margin:16px 0 8px">◆ Episch (Epic)</h3>
 <div class="cards">
-<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Shockfin</span><span class="fuse">Bester Köder: Epic Bait I (33,3 %)</span><span class="fuse">Spezial: Zutat zum Craften von <b>Electric Nerve</b> (Blitz-Material)</span></div></div>
-<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Thornridge</span><span class="fuse">Bester Köder: Epic Bait I (33,3 %)</span><span class="fuse">Spezial: Zutat zum Craften von <b>Fish Bones</b> (Fischgräten!)</span></div></div>
-<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Yellowfin</span><span class="fuse">Bester Köder: Epic Bait I (33,3 %)</span><span class="fuse">Spezial: Zutat zum Craften von <b>Fish Teeth</b> (Fischzähne)</span></div></div>
-<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Cinderscale</span><span class="fuse">Bester Köder: Epic Bait II (50 %) oder Maden</span></div></div>
-<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Specklefin</span><span class="fuse">Bester Köder: Epic Bait II (50 %) oder Maden</span></div></div>
+<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Schockflosse</span> <small class="gde">(Shockfin)</small><span class="fuse">Bester Köder: Epischer Angelköder (33,3 %)</span><span class="fuse">Spezial: Zutat zum Craften von <b>Electric Nerve</b> (Blitz-Material)</span></div></div>
+<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Thornridge</span> <small class="gde">(dt. Bezeichnung nicht verifiziert)</small><span class="fuse">Bester Köder: Epischer Angelköder (33,3 %)</span><span class="fuse">Spezial: Zutat zum Craften von <b>Fish Bones</b> (Fischgräten!)</span></div></div>
+<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Gelbflosse</span> <small class="gde">(Yellowfin)</small><span class="fuse">Bester Köder: Epischer Angelköder (33,3 %)</span><span class="fuse">Spezial: Zutat zum Craften von <b>Fish Teeth</b> (Fischzähne)</span></div></div>
+<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Glutschuppe</span> <small class="gde">(Cinderscale)</small><span class="fuse">Bester Köder: Epischer Angelköder II (50 %) oder Maden</span></div></div>
+<div class="card fish-card"><i class="diamond d-epic" style="width:15px;height:15px"></i><div class="body"><span class="fname f-epic">Fleckenflosse</span> <small class="gde">(Specklefin)</small><span class="fuse">Bester Köder: Epischer Angelköder II (50 %) oder Maden</span></div></div>
 </div>
 
 <h2>6 · Quests &amp; der Angler-NPC</h2>
 <div class="table-scroll">
 <table>
 <tr><th>Quest</th><th>Was sie bringt</th></tr>
-<tr><td><b>Unknown Waters</b></td><td>Tutorial — freischaltet Simple Fishing Rod &amp; Simple-Bait-Rezept</td></tr>
+<tr><td><b>Unknown Waters</b></td><td>Tutorial — freischaltet einfache Angel &amp; Rezept für einfachen Angelköder</td></tr>
 <tr><td><b>A Cursed Catch</b></td><td>Belohnung: Cursed Fishing Rod</td></tr>
 <tr><td><b>Lucky Catch</b></td><td>Belohnung: Lucky Fishing Rod (X-Schild ausgraben, Truhe am Ende) (danach am Fisher craftbar)</td></tr>
-<tr><td><b>Nice Day for Fishing</b></td><td>Belohnung: Excellent Fishing Rod + Zugang zu allen höheren Bait-Rezepten beim Fisher (Zeigt dem Angler einen Epischen Fisch!)</td></tr>
+<tr><td><b>Nice Day for Fishing</b></td><td>Belohnung: Excellent Fishing Rod + Zugang zu allen höheren Köder-Rezepten beim Fisher (Zeigt dem Angler einen Epischen Fisch!)</td></tr>
 </table>
 </div>
-<p style="margin-top:8px;color:var(--muted);font-size:14px">Der <b>Angler (Captain Melville Fontane)</b> sitzt im Wogschimmer-Grund am „Alten Ankerplatz" (erkennbar am großen Drachenschädel mit Steg). In der Questkette landest du auch auf der nahen <b>Angler-Insel</b> — markiere sie: dort gibt es Frosch-Wirtschaft für Köder, und die turbulenten Gewässer ringsum lohnen sich ebenfalls. Einige Köder-Rezepte verlangen übrigens Goldmünzen — <b>Thornridge, Shockfin und Yellowfin</b> sind die Crafting-Quellen für Fish Bones/Fish Teeth/Electric Nerve, mit denen du die Köder-Kette komplett machst.</p>
+<p style="margin-top:8px;color:var(--muted);font-size:14px">Der <b>Angler (Captain Melville Fontane)</b> sitzt im Wogschimmer-Grund am „Alten Ankerplatz" (erkennbar am großen Drachenschädel mit Steg). In der Questkette landest du auch auf der nahen <b>Fischerinsel</b> — markiere sie: dort gibt es Froschwärme für Köder, und die turbulenten Gewässer ringsum lohnen sich ebenfalls. Einige Köder-Rezepte verlangen übrigens Goldmünzen — <b>Thornridge, Schockflosse und Gelbflosse</b> sind die Crafting-Quellen für Fischgräten/Fischzähne/Electric Nerve, mit denen du die Köder-Kette komplett machst.</p>
 
 <h2>7 · Beute beim Angeln (Loot-Pools)</h2>
 <div class="note"><ul class="rules">
 <li>Je nach Köder landet statt eines Fischs manchmal <b>Sonstige Beute</b> im Netz — der Anteil hängt von der <b>Rute</b> ab (Cursed: 16 %, Lucky: 16 %, Simple: 4 %) und am Spot-Typ (siehe Abschnitt 4).</li>
-<li>Mit <b>Maggots / Epic Bait II</b>: <b>Ancient Health Potion</b> (~10 %), <b>Ancient Mana Potion</b> (~8 %), <b>Ancient Ring of Health</b> &amp; <b>Ancient Ring of Mana</b> (je ~1,7 %) — beliebter Nebenverdienst.</li>
-<li>Mit <b>Frog &amp; Tier-6-Ködern</b>: <b>Ancient Drak Wand</b> (~1 %).</li>
+<li>Mit <b>Maden / Epischem Angelköder II</b>: <b>Ancient Health Potion</b> (~10 %), <b>Ancient Mana Potion</b> (~8 %), <b>Ancient Ring of Health</b> &amp; <b>Ancient Ring of Mana</b> (je ~1,7 %) — beliebter Nebenverdienst.</li>
+<li>Mit <b>Frosch &amp; Tier-6-Ködern</b>: <b>Ancient Drak Wand</b> (~1 %).</li>
 <li>Lucky &amp; Cursed Rute haben zusätzlich interne <b>Trash-/Stiefel-Gewichtung</b>: Lucky drückt Stiefel stark (Faktor 0,5), Cursed erhöht Trash (Faktor 5) — Lucky ist damit die „reinste" Angel, Cursed die Loot-Angel.</li>
 </ul></div>
 
 <h2>8 · Empfohlener Workflow</h2>
 <ol class="workflow">
-<li>Quest <b>Unknown Waters</b> abschließen → Simple Rod + Simple Bait craften (Handwerk)</li>
+<li>Quest <b>Unknown Waters</b> abschließen → einfache Angel + einfachen Angelköder craften (Handwerk)</li>
 <li>Im Skilltree das <b>+30 % Angel-Stamina</b>-Talent holen</li>
-<li>Questkette beim Fisher weiterspielen: <b>A Cursed Catch → Lucky Catch → Nice Day for Fishing</b> (bis zur Excellent Rod und den Bait-Rezepten)</li>
-<li><b>Angler-Insel</b> besuchen und Frosch-Vorrat füllen (bester Allround-Wildköder)</li>
+<li>Questkette beim Fisher weiterspielen: <b>A Cursed Catch → Lucky Catch → Nice Day for Fishing</b> (bis zur Excellent Rod und den Köder-Rezepten)</li>
+<li><b>Fischerinsel</b> besuchen und Frosch-Vorrat füllen (bester Allround-Wildköder)</li>
 <li>Fische nach Plan fangen: Zielfisch raussuchen → passenden Köder wählen (Abschnitt 3/5) → möglichst <b>More-Fish-Spot</b> (Abschnitt 4) → Rute passend zur Stamina wählen</li>
-<li>Epische Spezialisierung: <b>Epic Bait I</b> für Shockfin/Thornridge/Yellowfin, <b>Epic Bait II</b> (mit Archaischen Scherben!) für Cinderscale/Specklefin</li>
-<li>Catch-Erträge am <b>Seafood Grill</b> verkochen (Sauerstoff-Mahlzeiten für Tauchgänge) — Fish Bones/Teeth/Electric Nerve zurück in den Köder-/Crafting-Kreislauf</li>
+<li>Epische Spezialisierung: <b>Epischer Angelköder</b> für Schockflosse/Thornridge/Gelbflosse, <b>Epischer Angelköder II</b> (mit Archaischen Scherben!) für Glutschuppe/Fleckenflosse</li>
+<li>Catch-Erträge am <b>Fisch- und Meeresfrüchte-Grill</b> verkochen (Sauerstoff-Mahlzeiten für Tauchgänge) — Fischgräten/Zähne/Electric Nerve zurück in den Köder-/Crafting-Kreislauf</li>
 </ol>
 
 <h2>9 · Weiterführende Links</h2>
@@ -375,7 +379,7 @@
 <p style="color:var(--muted);font-size:13.5px;margin-top:10px">Auf der PinDrop-Karte lassen sich die Fishing Spots (inkl. Spottypen) einblenden — so findest du die nächsten „More Fish"-Spots zu deiner Basis.</p>
 </div>
 
-<footer>Quellen: enshrouded.wiki.gg/wiki/Fishing (Catch-Rates, Rods, Loot-Pools, Spot-Mechanik), pindrop.gg/enshrouded/fishing (Spottypen mit Dateiwerten, 38 Spots, Tier-Daten; Regionsverteilung als unsicherer Scan gekennzeichnet), keengamer.com (Rezepte), aywren.com &amp; Steam-Community-Guide (Praxis-Tipps) — Stand 2026, Enshrouded 1.0 „Wake of the Water".<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert).</footer>
+<footer>Quellen: enshrouded.wiki.gg/wiki/Fishing (Catch-Rates, Ruten, Loot-Pools, Spot-Mechanik), pindrop.gg/enshrouded/fishing (Spottypen mit Dateiwerten, 38 Spots, Tier-Daten), keengamer.com (Rezepte), eprison.de (deutsche Gegenstands-Namen), aywren.com &amp; Steam-Community-Guide (Praxis-Tipps) — Stand 2026, Enshrouded 1.0 „Wake of the Water". Deutsche Namen ohne eprison-Beleg sind als „nicht verifiziert" markiert.<br>Print: Strg+P → „Als PDF speichern" (Layout ist für A4 optimiert).</footer>
 
 </div>
 </body>
