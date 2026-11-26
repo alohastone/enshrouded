@@ -16,7 +16,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  font-family:"Playfair Display", serif;
+  font-family:"Lora", serif;
   background:var(--bg); color:var(--text);
   padding:clamp(14px,4vw,28px) clamp(10px,4vw,22px);
   line-height:1.55; font-size:16px;
