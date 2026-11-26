@@ -3,6 +3,8 @@
    Wird von index.html, juwelen.html und angeln.html geladen.
    ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 :root{
   --bg:#15131a; --panel:#1f1b26; --panel2:#262130;
   --gold:#c9a227; --ember:#e8a13c; --gem:#7f5cff; --gem2:#b49aff;
@@ -14,7 +16,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  font-family:"Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  font-family:"Playfair Display", serif;
   background:var(--bg); color:var(--text);
   padding:clamp(14px,4vw,28px) clamp(10px,4vw,22px);
   line-height:1.55; font-size:16px;
