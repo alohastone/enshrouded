@@ -189,6 +189,7 @@ footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;color:v
 .tile h2{margin:0 0 6px;border:none;padding:0}
 .tile p{color:var(--muted);font-size:14.5px}
 .tile .open{display:inline-block;margin-top:12px;color:var(--gold);font-weight:bold;letter-spacing:.5px;font-size:14px}
+.tile.builds .tile-emblem{background:linear-gradient(135deg,rgba(232,161,60,.25),transparent);box-shadow:0 0 14px rgba(232,161,60,.3)}
 
 /* ---------- Responsive ---------- */
 @media (max-width:760px){

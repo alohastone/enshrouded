@@ -6,6 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Enshrouded – Meta-Builds (Update 1.0)</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ---------- Seitenspezifische Layout-Regeln (builds.html) ---------- */
+
+    /* Kachel-Raster: maximal zwei nebeneinander */
+    .cards {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr))
+    }
+
+    @media (max-width:820px) {
+      .cards {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Listen in den Karten: sauber untereinander mit hängendem Einzug */
+    .card ul.detail,
+    .meta-card ul.detail {
+      list-style: none;
+      margin-top: 8px
+    }
+
+    .card ul.detail li,
+    .meta-card ul.detail li {
+      display: block;
+      position: relative;
+      padding: 4px 0 4px 22px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .card ul.detail li::before,
+    .meta-card ul.detail li::before {
+      content: "✦";
+      position: absolute;
+      left: 2px;
+      top: 5px;
+      color: var(--gold);
+    }
+
+    .card ul.detail b,
+    .meta-card ul.detail b {
+      color: var(--gem2)
+    }
+
+    /* Meta-Text über der Liste */
+    .meta-card .mtxt {
+      display: block;
+      margin-top: 4px;
+      margin-bottom: 2px
+    }
+
+    /* Tabellen-Umbruch im Titel verhindern */
+    th,
+    td {
+      word-break: normal;
+      hyphens: auto
+    }
+  </style>
 </head>
 
 <body>
@@ -26,8 +84,8 @@
           verstreuen.</li>
         <li><b>Attribute:</b> Eine Schadens-Stat klar dominieren (Int/Str/Dex), dazu genug Vitality/Stamina/Mana für die
           Spielweise.</li>
-        <li><b>Stand:</b> Release 1.0 inkl. Biome Cinders Cradle. Best-in-Slot-Gear dort wird noch dokumentiert —Links
-          zu pindrop.gg für den Skilltree-Planer.</li>
+        <li><b>Stand:</b> Release 1.0 inkl. Biome Cinders Cradle. Best-in-Slot-Gear dort wird noch dokumentiert —
+          Skilltree-Planer-Links finden sich unten auf der Seite.</li>
       </ul>
     </div>
 
@@ -81,7 +139,7 @@
           <td><b>Einhandschwert-Krieger</b></td>
           <td>Zuverlässig &amp; verzeihend</td>
           <td class="lvl">Str / Kon</td>
-          <td class="stars">★★★☆☆ Anfänger-freundlich</td>
+          <td class="stars">★★★☆☆ Anfängerfreundlich</td>
         </tr>
         <tr>
           <td class="tier">B</td>
@@ -106,7 +164,7 @@
         </tr>
       </table>
     </div>
-    <p class="gde">Quellen: enshroudedbuilds.org, G2A-News, aoeah.com, pindrop.gg, Hack the Minotaur — Stand Update 1.0.
+    <p class="gde">Quellen: enshroudedbuilds.org, G2A News, aoeah.com, pindrop.gg, Hack the Minotaur — Stand Update 1.0.
     </p>
 
     <h2>Build-Karten im Detail</h2>
@@ -117,7 +175,7 @@
         <h4><span class="rank-badge">S1</span>Wand &amp; Stab Battlemage <small>bester Allrounder</small></h4>
         <span class="mtxt">Der Konsens-König des 1.0-Skilltrees: Nahbereich-Sicherheit plus Fernkampf-Elementar-DPS.
           Krit-Nodes aus dem Trickster-Zweig machen jeden Treffer schmerzhaft.</span>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Waffen:</b> Feuer-, Eis- &amp; Schock-Zauberstab gegen jede Elementar-Schwäche, dazu ein %-Mana-Stab
             für quasi unendliches Zaubern. Ewige Eislanze &amp; ewiger Feuerball (kein Spell-Ammo-Crafting). Offhand:
             Spectral Ward (Parade) oder Schild.</li>
@@ -126,8 +184,8 @@
             Waters of Life, Terror &amp; Bloodletting (Trickster), Chain Hit, Mass Destruction, Quick Charge, Mana
             Currents, Spellsinger, Iceman, Arsonist, Krit-Nodes des Zauberers.</li>
           <li><b>Stat-Fokus:</b> Intelligenz als Hauptstat, Spirit für komfortablen Manapool.</li>
-          <li><b>Stärken:</b> Vielseitigste Rotation, stabile Manaregeneration, nahezu unendliche Ressourcen.
-            <b>Schwäche:</b> Gear-abhängig.</li>
+          <li><b>Stärken:</b> Vielseitigste Rotation, stabile Manaregeneration, nahezu unendliche Ressourcen.</li>
+          <li><b>Schwäche:</b> Stark gear-abhängig.</li>
         </ul>
       </div>
 
@@ -135,111 +193,114 @@
         <h4><span class="rank-badge">S2</span>Summoner / Nekromant <small>stärkster neuer Archetyp</small></h4>
         <span class="mtxt">Totems und Skelette ziehen die Aufmerksamkeit der Gegner auf sich, während ihr aus der
           hinteren Reihe meltet. Advanced Necromancy &amp; Totem Mastery sind neu in 1.0.</span>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Waffen:</b> Violet Storm Staff + Death Gazer Axe (beide mit Gem of Currents), Guard of the North + Gem
-            of Lycanthropy für Nachtkämpfe, Vesta's Keule als Lebensraub-Notfall-Waffe.</li>
+            of Lycanthropy für Nachtkämpfe, Vestas Keule als Lebensraub-Notfall-Waffe.</li>
           <li><b>Skills:</b> Kompletter Trickster-Zweig, Bloodletting, Terror, Chain Hit, Mass Destruction, Battle Heal,
             Athlete/Blood Warrior, Metabolism, Arc Deflection (20 Mana pro Parade), Merciless Attack, Thunder;
             Iceman/Arsonist als Flex.</li>
           <li><b>Rüstung:</b> Sunpiercer-Helm (+23 % Nahkampf-Krit) und Sunpiercer-Set (HP-Regeneration auf jedem Teil).
           </li>
-          <li><b>Stärken:</b> Sehr sicher durch Minions, stark solo wie in Gruppen. <b>Schwäche:</b> Wenn die Summons
-            sterben, werdet ihr selbst zum Ziel.</li>
+          <li><b>Stärken:</b> Sehr sicher durch Minions, stark solo wie in Gruppen.</li>
+          <li><b>Schwäche:</b> Sterben die Summons, werdet ihr selbst zum Ziel.</li>
         </ul>
       </div>
 
       <div class="card">
         <h4><span class="rank-badge">A1</span>Crit-Bogen Ranger <small>sicherer Ranged-DPS</small></h4>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Waffen:</b> Langbogen, vor allem Sprengpfeile (Explosive Arrows) und die neuen <b>ewigen
-              Elementarpfeilen</b> — keine Munitionskosten mehr.</li>
+              Elementarpfeile</b> — keine Munitionskosten mehr.</li>
           <li><b>Skills:</b> Fast kompletter Ranger-Baum: Puncture, Barrage &amp; Survival Instinct (alle drei neu in
             1.0), Fatal Precision, Shell Shock &amp; Chain Reaction für Crowd Control, Weak-Point-Headshots.</li>
-          <li><b>Rüstung:</b> Quetzal-Hunter-Set. <b>Ringe:</b> Piercing oder Acrobatics.</li>
+          <li><b>Rüstung:</b> Quetzal-Hunter-Set.</li>
+          <li><b>Ringe:</b> Piercing oder Acrobatics.</li>
           <li><b>Verbrauchsmaterial:</b> Hühnersuppe, Rooibos-Tee, Taro-Wurzel-Curry.</li>
-          <li><b>Stärken:</b> Top-Tier gegen Bosse und Gegnerpacks aus sicherer Distanz. <b>Schwäche:</b> Engere Räume
-            und flinke Gegner sind mühsam.</li>
+          <li><b>Stärken:</b> Top-Tier gegen Bosse und Gegnerpacks aus sicherer Distanz.</li>
+          <li><b>Schwäche:</b> Engere Räume und flinke Gegner sind mühsam.</li>
         </ul>
       </div>
 
       <div class="card">
         <h4><span class="rank-badge">A2</span>Zweihand-Barbar <small>höchster physischer DPS</small></h4>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Waffen:</b> Zweihand-Waffen (Äxte profitieren besonders von den 1.0-Reichweiten-Fixes), schwere
-            Nahkampfattacks treffen mehrere Gegner.</li>
+            Nahkampfattacken treffen mehrere Gegner.</li>
           <li><b>Skills:</b> Barbarian's Path, Two-Handed Specialization (Focus-Attack), Brute, Blood Rage &amp; Battle
             Heal (Selbstsustain!), Heavy Handed, Crash Down Attack/Force aus dem Athlete-Baum (Sprungattacke +
-            Flächen-Schaden + Stun), Whirlwind Crescendo, Evasion Attack + Blink als Gap-Closer, Double Jump.</li>
+            Flächenschaden + Stun), Whirlwind Crescendo, Evasion Attack + Blink als Gap-Closer, Double Jump.</li>
           <li><b>Stat-Fokus:</b> Stärke; der Barbar skaliert zusätzlich mit der Flamme (Bonus-Stärke pro Flammen-Level).
           </li>
           <li><b>Stärken:</b> Massive Treffer, Stuns &amp; Backstab-Combos können viele Gegner „oneshotten" — auch
-            Bosse. <b>Schwäche:</b> Null Reichweite, hohe Aggressivität nötig.</li>
+            Bosse.</li>
+          <li><b>Schwäche:</b> Praktisch keine Reichweite, hohe Aggressivität nötig.</li>
         </ul>
       </div>
 
       <div class="card">
         <h4><span class="rank-badge">A3</span>Elementar-AoE-Magier <small>Crowd-Clearing</small></h4>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Waffen:</b> Zauberstäbe aller Elemente, Fokus auf elementaren Spell-Rotationen (Pyromaniac, Arsonist,
             Iceman, Thunder je nach bevorzugtem Typ).</li>
-          <li><b>Skills:</b> Zauberer-Baum mit Krit-Nodes, Evade-Attack für Schaden auf Distanz, Blitz/Frost-Nodes.
+          <li><b>Skills:</b> Zauberer-Baum mit Krit-Nodes, Evade-Attack für Schaden auf Distanz, Blitz-/Frost-Nodes.
             Blizzard friert Gruppen ein und stun-lockt via Terror-Procs, Entangle fixiert Mobs für Feuerball-Combos,
             Flame Pillar pulvert Schatten-Gegner, der ewige Shroud-Meteor liefert 15–25k pro Cast.</li>
           <li><b>Stat-Fokus:</b> Intelligenz + Spirit.</li>
-          <li><b>Stärken:</b> Größter Flächenschaden, ideal für Hollow Halls &amp; Gruppen. <b>Schwäche:</b> Glaskanone,
-            lange Castzeiten, Spell-Ammo-Crafting — solistisch früh holprig.</li>
+          <li><b>Stärken:</b> Größter Flächenschaden, ideal für Hollow Halls &amp; Gruppen.</li>
+          <li><b>Schwäche:</b> Glaskanone, lange Castzeiten, Spell-Ammo-Crafting — solistisch früh holprig.</li>
         </ul>
       </div>
 
       <div class="card">
-        <h4><span class="rank-badge">B1</span>Einhandschwert-Krieger <small>Einsteiger-freundlich</small></h4>
-        <ul class="rules">
+        <h4><span class="rank-badge">B1</span>Einhandschwert-Krieger <small>Einsteigerfreundlich</small></h4>
+        <ul class="detail">
           <li><b>Waffen:</b> Einhandschwert mit Cleave, Bogen zum Pullen, Zauberstab für Elementar-Optionen (Eis gegen
             Scavenger, Feuer gegen Fell). Schild mit hohem Block-Wert &amp; Parade-Power.</li>
           <li><b>Skills:</b> One-Handed Specialization, Evasion Attack, Blink (Heiler-Baum), Crash Down Attack,
             Merciless Attack, Power Parry, Warrior's Path, Veteran, Bash, Shockwave, Breach, Battle Heal, Counter
-            Strike, Water/Waters of Life, Radiant/Earth Aura.</li>
-          <li><b>Rüstung:</b> Schweres Set mit hoher physischer Rüstung &amp; HP-Rolls. <b>Ringe:</b> Lebensraub
-            (Solo-Sustain), Commander Ring früh.</li>
-          <li><b>Stärken:</b> Selbstheilung, kein Mana, sehr verzeihend. <b>Schwäche:</b> Im Endgame deutlicher unter
-            den Meta-Builds.</li>
+            Strike, Water Aura/Waters of Life, Radiant/Earth Aura.</li>
+          <li><b>Rüstung:</b> Schweres Set mit hoher physischer Rüstung &amp; HP-Rolls.</li>
+          <li><b>Ringe:</b> Lebensraub (Solo-Sustain), Commander Ring früh.</li>
+          <li><b>Stärken:</b> Selbstheilung, kein Mana, sehr verzeihend.</li>
+          <li><b>Schwäche:</b> Im Endgame deutlich unter den Meta-Builds.</li>
         </ul>
       </div>
 
       <div class="card">
         <h4><span class="rank-badge">B2</span>Dolch-Assassine <small>Mobilität &amp; Backstabs</small></h4>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Waffen:</b> Doppel-Giftdolche mit Durchstoß-, Backstab- und Lebensraub-Boni; Bogen zum Pullen &amp; für
             Schalter-Rätsel.</li>
           <li><b>Skills:</b> Sneak Attack, Backstab Mastery, Dagger Specialization (AoE), Thrust, Venomous Blades, Venom
             Mastery, Strategic Maneuver (leichteres Umgehen an die Rückseite).</li>
           <li><b>Rüstung:</b> Sky Spectre (Endgame), Vorgoths Handschuhe (Best in Slot für Dolch-Bonus), vorher Blood
             Feather. Nahkampf-Damage, -Krit &amp; Backstab-Rolls priorisieren.</li>
-          <li><b>Stärken:</b> Schnellste Solo-Mobilität, versteckte Sneak-Angriffe. <b>Schwäche:</b>
-            Positionierungs-lastig, wenig Flächenschaden.</li>
+          <li><b>Stärken:</b> Schnellste Solo-Mobilität, versteckte Sneak-Angriffe.</li>
+          <li><b>Schwäche:</b> Positionierungslastig, wenig Flächenschaden.</li>
         </ul>
       </div>
 
       <div class="card">
         <h4><span class="rank-badge">🛡</span>Tank / Guardian <small>Koop-Frontline</small></h4>
-        <ul class="rules">
-          <li><b>Setup:</b> Einhandstreitkolme + Turmschild, schwere Platten, Aggro-Fähigkeiten (Erster Schläger,
+        <ul class="detail">
+          <li><b>Setup:</b> Einhandstreitkolben + Turmschild, schwere Platten, Aggro-Fähigkeiten (Erster Schläger,
             konstanter Schaden, Heilung erzeugt Threat).</li>
           <li><b>Skills:</b> Konstitution (Health), Shiny Plates &amp; Heavy Plates (Rüstungs-Effektivität), Tower &amp;
             Warden (weniger physischer/magischer Schaden bei mehreren Gegnern), Earth Aura, Power Parry.</li>
           <li><b>Stärken:</b> Hält alle Gegner von der Gruppe fern — Anker jeder Koop-Gruppe, v. a. auf höheren
-            Schwierigkeiten. <b>Schwäche:</b> Niedrigster Schaden, wenig Mobilität.</li>
+            Schwierigkeiten.</li>
+          <li><b>Schwäche:</b> Niedrigster Schaden, wenig Mobilität.</li>
         </ul>
       </div>
 
       <div class="card">
         <h4><span class="rank-badge">✚</span>Heiler / Support <small>Team-Sustain</small></h4>
-        <ul class="rules">
+        <ul class="detail">
           <li><b>Konzept:</b> Hält große Flameborn-Gruppen am Leben; teilt Battle Heal mit Battlemage &amp; Tank.</li>
           <li><b>Skills:</b> Heiler-Baum mit Waters of Life, Blink-Zweig, Intelligenz-Nodes; Radiant Aura für
             Team-Buffs.</li>
-          <li><b>Stärken:</b> Unverzichtbar in 16-Spieler-Gruppen. <b>Schwäche:</b> Solo kaum spielbar, minimaler
-            Eigenschaden.</li>
+          <li><b>Stärken:</b> Unverzichtbar in 16-Spieler-Gruppen.</li>
+          <li><b>Schwäche:</b> Solo kaum spielbar, minimaler Eigenschaden.</li>
         </ul>
       </div>
 
@@ -256,7 +317,7 @@
         <tr>
           <td><b>Bester Gesamt-Build</b></td>
           <td>Wand/Stab Battlemage</td>
-          <td>Meist Flächenschaden + starke 1.0-Spells und Wand-Verbesse­rungen</td>
+          <td>Meist Flächenschaden + starke 1.0-Spells und Wand-Verbesserungen</td>
         </tr>
         <tr>
           <td><b>Bester Solo-Build</b></td>
@@ -290,13 +351,13 @@
     <ol class="workflow">
       <li><b>Archetyp wählen:</b> Zuerst festlegen, ob Krieger-, Magier- oder Ranger-Baum — mischen nur innerhalb
         benachbarter Archetypen (z. B. Trickster neben Wizard, Athlete neben Barbarian).</li>
-      <li><b>Hauptstat dominieren:</b> ~60–70 % der Attributspunkte in eine Schadens-Stat (Int, Str oder Dex), der Rest
-        in Stamina/Mana/HP nach Spielweise.</li>
+      <li><b>Hauptstat dominieren:</b> Rund 60–70 % der Attributspunkte in eine Schadens-Stat (Int, Str oder Dex), der
+        Rest in Stamina/Mana/HP nach Spielweise.</li>
       <li><b>Signature-Nodes sichern:</b> Specialization-Nodes schalten die Focus-Special-Attack frei (z. B. Two-Handed
         oder One-Handed Specialization) — gehören immer ins Build.</li>
       <li><b>Sustain nicht vergessen:</b> Blood Rage/Battle Heal (Melee), Waters of Life/Mana Currents (Magier),
         Lebensraub-Ringe (alles andere). Ein toter DD hat null DPS.</li>
-      <li><b>EWige Munition nutzen:</b> Ewige Eislanze, ewiger Feuerball &amp; ewige Elementarpfeile sparen komplettes
+      <li><b>Ewige Munition nutzen:</b> Ewige Eislanze, ewiger Feuerball &amp; ewige Elementarpfeile sparen komplettes
         Crafting von Spell-/Pfeilmunition.</li>
       <li><b>Endgame-Gear cappen:</b> Level 50, aufgewertetes Gear bis Level 55; Sunpiercer-Set (Nahkampf) bzw.
         elementar-optimierte Stäbe sind die aktuellen Benchmark-Items.</li>
